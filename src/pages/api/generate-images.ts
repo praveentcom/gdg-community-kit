@@ -13,8 +13,11 @@ import {
   LANDING_BANNER_1440x499,
   LANDING_BANNER_2500x471,
   LANDING_BANNER_640x500,
+  LANDING_BANNER_1440x499_SKELETON,
+  LANDING_BANNER_2500x471_SKELETON,
+  LANDING_BANNER_640x500_SKELETON,
   STACKED_LOGO_VARIANTS,
-  BEVY_BANNER
+  BEVY_BANNER,
 } from "@/utils/constants";
 
 export default async function handler(
@@ -36,7 +39,10 @@ export default async function handler(
     ...LANDING_BANNER_640x500,
     ...LANDING_BANNER_1440x499,
     ...LANDING_BANNER_2500x471,
-    ...BEVY_BANNER
+    ...LANDING_BANNER_640x500_SKELETON,
+    ...LANDING_BANNER_1440x499_SKELETON,
+    ...LANDING_BANNER_2500x471_SKELETON,
+    ...BEVY_BANNER,
   ];
 
   const zip = new JSZip();
@@ -61,6 +67,7 @@ export default async function handler(
             variant: imageGen.variant,
             dimensions: imageGen.dimensions,
             fontColor: imageGen.fontColor,
+            bgImage: imageGen.bgImage || null,
           });
 
           await page.setViewport({
@@ -98,3 +105,9 @@ export default async function handler(
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
+
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+};

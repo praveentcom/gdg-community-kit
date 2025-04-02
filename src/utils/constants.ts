@@ -158,6 +158,57 @@ export const HORIZONTAL_LOGO_VARIANTS: ImageGenerationConfig[] = [
   },
 ];
 
+export const BEVY_BANNER: ImageGenerationConfig[] = [
+  {
+    id: "bevy-banner-blue",
+    name: "Bevy_Banner_Blue.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandBevyBanner,
+  },
+  {
+    id: "bevy-banner-green",
+    name: "Bevy_Banner_Green.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandBevyBanner,
+  },
+  {
+    id: "bevy-banner-yellow",
+    name: "Bevy_Banner_Yellow.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandBevyBanner,
+  },
+  {
+    id: "bevy-banner-red",
+    name: "Bevy_Banner_Red.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandBevyBanner,
+  },
+];
+
 export const LANDING_BANNER_640x500: ImageGenerationConfig[] = [
   {
     id: "landing-banner-640x500-blue",
@@ -311,53 +362,167 @@ export const LANDING_BANNER_2500x471: ImageGenerationConfig[] = [
   },
 ];
 
-export const BEVY_BANNER: ImageGenerationConfig[] = [
+export const LANDING_BANNER_640x500_SKELETON: ImageGenerationConfig[] = [
   {
-    id: "bevy-banner-blue",
-    name: "Bevy_Banner_Blue.png",
-    folder: "Bevy Banner",
+    id: "landing-banner-640x500-skeleton-blue",
+    name: "Landing_Banner_640x500_Skeleton_Blue.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.BLUE,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner640x500,
+  },
+  {
+    id: "landing-banner-640x500-skeleton-green",
+    name: "Landing_Banner_640x500_Skeleton_Green.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.GREEN,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner640x500,
+  },
+  {
+    id: "landing-banner-640x500-skeleton-yellow",
+    name: "Landing_Banner_640x500_Skeleton_Yellow.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner640x500,
+  },
+  {
+    id: "landing-banner-640x500-skeleton-red",
+    name: "Landing_Banner_640x500_Skeleton_Red.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.RED,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner640x500,
+  },
+];
+
+export const LANDING_BANNER_1440x499_SKELETON: ImageGenerationConfig[] = [
+  {
+    id: "landing-banner-1440x499-skeleton-blue",
+    name: "Landing_Banner_1440x499_Skeleton_Blue.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.BLUE,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner1440x499,
+  },
+  {
+    id: "landing-banner-1440x499-skeleton-green",
+    name: "Landing_Banner_1440x499_Skeleton_Green.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.GREEN,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner1440x499,
+  },
+  {
+    id: "landing-banner-1440x499-skeleton-yellow",
+    name: "Landing_Banner_1440x499_Skeleton_Yellow.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner1440x499,
+  },
+  {
+    id: "landing-banner-1440x499-skeleton-red",
+    name: "Landing_Banner_1440x499_Skeleton_Red.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.RED,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner1440x499,
+  },
+];
+
+export const LANDING_BANNER_2500x471_SKELETON: ImageGenerationConfig[] = [
+  {
+    id: "landing-banner-2500x471-skeleton-blue",
+    name: "Landing_Banner_2500x471_Skeleton_Blue.png",
+    folder: "Landing Banner/2500x471",
     variant: EnumColorVariant.BLUE,
     dimensions: {
       width: 2500,
-      height: 634,
+      height: 471,
     },
     fontColor: EnumColorHex.BLUE,
-    generator: getBrandBevyBanner,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner2500x471,
   },
   {
-    id: "bevy-banner-green",
-    name: "Bevy_Banner_Green.png",
-    folder: "Bevy Banner",
+    id: "landing-banner-2500x471-skeleton-green",
+    name: "Landing_Banner_2500x471_Skeleton_Green.png",
+    folder: "Landing Banner/2500x471",
     variant: EnumColorVariant.GREEN,
     dimensions: {
       width: 2500,
-      height: 634,
+      height: 471,
     },
     fontColor: EnumColorHex.GREEN,
-    generator: getBrandBevyBanner,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner2500x471,
   },
   {
-    id: "bevy-banner-yellow",
-    name: "Bevy_Banner_Yellow.png",
-    folder: "Bevy Banner",
+    id: "landing-banner-2500x471-skeleton-yellow",
+    name: "Landing_Banner_2500x471_Skeleton_Yellow.png",
+    folder: "Landing Banner/2500x471",
     variant: EnumColorVariant.YELLOW,
     dimensions: {
       width: 2500,
-      height: 634,
+      height: 471,
     },
     fontColor: EnumColorHex.YELLOW,
-    generator: getBrandBevyBanner,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner2500x471,
   },
   {
-    id: "bevy-banner-red",
-    name: "Bevy_Banner_Red.png",
-    folder: "Bevy Banner",
+    id: "landing-banner-2500x471-skeleton-red",
+    name: "Landing_Banner_2500x471_Skeleton_Red.png",
+    folder: "Landing Banner/2500x471",
     variant: EnumColorVariant.RED,
     dimensions: {
       width: 2500,
-      height: 634,
+      height: 471,
     },
     fontColor: EnumColorHex.RED,
-    generator: getBrandBevyBanner,
+    bgImage: "skeleton",
+    generator: getBrandLandingBanner2500x471,
   },
 ];

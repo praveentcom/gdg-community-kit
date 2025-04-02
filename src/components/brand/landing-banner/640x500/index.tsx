@@ -24,11 +24,13 @@ function Element({
   variant,
   dimensions,
   fontColor,
+  bgImage = null,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
+  bgImage?: string | null;
 }) {
   const { positions, font } = CONFIG;
 
@@ -41,7 +43,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/640x500/${variant}/base_image.png`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/640x500/${variant}/base_image${bgImage ? "_transparent" : ""}.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
