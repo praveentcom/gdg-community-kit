@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import chromium from '@sparticuz/chromium';
-import puppeteer from 'puppeteer-core';
 chromium.setGraphicsMode = false;
 
 import JSZip from "jszip";
