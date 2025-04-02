@@ -6,13 +6,13 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     locationText: {
-      top: 212,
-      left: 520,
-      rightPadding: 100,
+      top: 415,
+      left: 810,
+      rightPadding: 10,
     },
   },
   font: {
-    size: 74,
+    size: 25.5,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
@@ -41,7 +41,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/logo/horizontal/${variant}/base_image.png`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/1440x499/${variant}/base_image.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -81,7 +81,7 @@ function Element({
   );
 }
 
-export default function getBrandLogoHorizontal({
+export default function getBrandLandingBanner1440x499({
   location,
   variant,
   dimensions,

@@ -5,7 +5,7 @@ import ReactDOMServer from "react-dom/server";
 
 const CONFIG = {
   positions: {
-    logoText: {
+    locationText: {
       top: 996,
       left: 140,
       rightPadding: 100,
@@ -55,9 +55,9 @@ function Element({
       <div
         style={{
           position: "absolute",
-          left: `${positions.logoText.left}px`,
-          top: `${positions.logoText.top}px`,
-          right: `${positions.logoText.rightPadding}px`,
+          left: `${positions.locationText.left}px`,
+          top: `${positions.locationText.top}px`,
+          right: `${positions.locationText.rightPadding}px`,
           display: "flex",
           alignItems: "flex-start",
           justifyContent: "flex-start",

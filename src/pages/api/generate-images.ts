@@ -10,6 +10,9 @@ import getPuppeteerBrowser from "@/utils/getPuppeteerBrowser";
 
 import {
   HORIZONTAL_LOGO_VARIANTS,
+  LANDING_BANNER_1440x499,
+  LANDING_BANNER_2500x471,
+  LANDING_BANNER_640x500,
   STACKED_LOGO_VARIANTS,
 } from "@/utils/constants";
 
@@ -29,6 +32,9 @@ export default async function handler(
   const IMAGE_GENERATORS = [
     ...STACKED_LOGO_VARIANTS,
     ...HORIZONTAL_LOGO_VARIANTS,
+    ...LANDING_BANNER_640x500,
+    ...LANDING_BANNER_1440x499,
+    ...LANDING_BANNER_2500x471,
   ];
 
   const zip = new JSZip();
@@ -84,6 +90,8 @@ export default async function handler(
     );
     res.status(200).send(zipBuffer);
   } catch (error) {
+    console.log("Error generating images:", error);
+
     await browser.close();
     res.status(500).json({ error: "Internal Server Error" });
   }

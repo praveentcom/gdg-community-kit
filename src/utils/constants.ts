@@ -1,3 +1,6 @@
+import getBrandLandingBanner1440x499 from "@/components/brand/landing-banner/1440x499";
+import getBrandLandingBanner2500x471 from "@/components/brand/landing-banner/2500x471";
+import getBrandLandingBanner640x500 from "@/components/brand/landing-banner/640x500";
 import getBrandLogoHorizontal from "@/components/brand/logo/horizontal";
 import getBrandLogoStacked from "@/components/brand/logo/stacked";
 
@@ -151,5 +154,158 @@ export const HORIZONTAL_LOGO_VARIANTS: ImageGenerationConfig[] = [
     },
     fontColor: EnumColorHex.RED,
     generator: getBrandLogoHorizontal,
+  },
+];
+
+export const LANDING_BANNER_640x500: ImageGenerationConfig[] = [
+  {
+    id: "landing-banner-640x500-blue",
+    name: "Landing_Banner_640x500_Blue.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandLandingBanner640x500,
+  },
+  {
+    id: "landing-banner-640x500-green",
+    name: "Landing_Banner_640x500_Green.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandLandingBanner640x500,
+  },
+  {
+    id: "landing-banner-640x500-yellow",
+    name: "Landing_Banner_640x500_Yellow.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandLandingBanner640x500,
+  },
+  {
+    id: "landing-banner-640x500-red",
+    name: "Landing_Banner_640x500_Red.png",
+    folder: "Landing Banner/640x500",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandLandingBanner640x500,
+  },
+];
+
+export const LANDING_BANNER_1440x499: ImageGenerationConfig[] = [
+  {
+    id: "landing-banner-1440x499-blue",
+    name: "Landing_Banner_1440x499_Blue.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandLandingBanner1440x499,
+  },
+  {
+    id: "landing-banner-1440x499-green",
+    name: "Landing_Banner_1440x499_Green.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandLandingBanner1440x499,
+  },
+  {
+    id: "landing-banner-1440x499-yellow",
+    name: "Landing_Banner_1440x499_Yellow.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandLandingBanner1440x499,
+  },
+  {
+    id: "landing-banner-1440x499-red",
+    name: "Landing_Banner_1440x499_Red.png",
+    folder: "Landing Banner/1440x499",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandLandingBanner1440x499,
+  },
+];
+
+export const LANDING_BANNER_2500x471: ImageGenerationConfig[] = [
+  {
+    id: "landing-banner-2500x471-blue",
+    name: "Landing_Banner_2500x471_Blue.png",
+    folder: "Landing Banner/2500x471",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandLandingBanner2500x471,
+  },
+  {
+    id: "landing-banner-2500x471-green",
+    name: "Landing_Banner_2500x471_Green.png",
+    folder: "Landing Banner/2500x471",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandLandingBanner2500x471,
+  },
+  {
+    id: "landing-banner-2500x471-yellow",
+    name: "Landing_Banner_2500x471_Yellow.png",
+    folder: "Landing Banner/2500x471",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandLandingBanner2500x471,
+  },
+  {
+    id: "landing-banner-2500x471-red",
+    name: "Landing_Banner_2500x471_Red.png",
+    folder: "Landing Banner/2500x471",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandLandingBanner2500x471,
   },
 ];
