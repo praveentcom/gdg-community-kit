@@ -1,3 +1,4 @@
+import getBrandBevyBanner from "@/components/brand/bevy-banner";
 import getBrandLandingBanner1440x499 from "@/components/brand/landing-banner/1440x499";
 import getBrandLandingBanner2500x471 from "@/components/brand/landing-banner/2500x471";
 import getBrandLandingBanner640x500 from "@/components/brand/landing-banner/640x500";
@@ -307,5 +308,56 @@ export const LANDING_BANNER_2500x471: ImageGenerationConfig[] = [
     },
     fontColor: EnumColorHex.RED,
     generator: getBrandLandingBanner2500x471,
+  },
+];
+
+export const BEVY_BANNER: ImageGenerationConfig[] = [
+  {
+    id: "bevy-banner-blue",
+    name: "Bevy_Banner_Blue.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandBevyBanner,
+  },
+  {
+    id: "bevy-banner-green",
+    name: "Bevy_Banner_Green.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandBevyBanner,
+  },
+  {
+    id: "bevy-banner-yellow",
+    name: "Bevy_Banner_Yellow.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandBevyBanner,
+  },
+  {
+    id: "bevy-banner-red",
+    name: "Bevy_Banner_Red.png",
+    folder: "Bevy Banner",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2500,
+      height: 634,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandBevyBanner,
   },
 ];

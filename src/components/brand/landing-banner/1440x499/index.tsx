@@ -7,12 +7,12 @@ const CONFIG = {
   positions: {
     locationText: {
       top: 415,
-      left: 810,
+      left: 808,
       rightPadding: 10,
     },
   },
   font: {
-    size: 25.5,
+    size: 26,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",

@@ -6,13 +6,13 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     locationText: {
-      top: 335,
-      left: 2225,
+      top: 460,
+      left: 2145,
       rightPadding: 10,
     },
   },
   font: {
-    size: 26,
+    size: 32,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
@@ -41,7 +41,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/2500x471/${variant}/base_image.png`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/bevy-banner/${variant}/base_image.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -81,7 +81,7 @@ function Element({
   );
 }
 
-export default function getBrandLandingBanner2500x471({
+export default function getBrandBevyBanner({
   location,
   variant,
   dimensions,
