@@ -1,8 +1,8 @@
-import chromium from '@sparticuz/chromium';
-import puppeteerCore from 'puppeteer-core';
-import puppeteer from 'puppeteer';
+import chromium from "@sparticuz/chromium";
+import puppeteerCore from "puppeteer-core";
+import puppeteer from "puppeteer";
 
-const isProduction = process.env.VERCEL === '1';
+const isProduction = process.env.VERCEL === "1";
 
 export default async function getPuppeteerBrowser() {
   if (isProduction) {
@@ -12,12 +12,12 @@ export default async function getPuppeteerBrowser() {
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
-      headless: chromium.headless
+      headless: chromium.headless,
     });
   } else {
     return puppeteer.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      args: ["--no-sandbox", "--disable-setuid-sandbox"],
     });
   }
-};
+}

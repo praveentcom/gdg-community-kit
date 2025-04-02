@@ -20,3 +20,10 @@
 
   --font-google-sans: "Google Sans", sans-serif;
 }
+
+html,
+body {
+  font-family: var(--font-google-sans);
+  background-color: var(--color-google-gs-white);
+  color: var(--color-google-gs-black);
+}

@@ -41,7 +41,7 @@ export default function Home() {
           onChange={(e) => setLocation(e.target.value)}
         />
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="bg-google-blue text-google-gs-white px-4 py-2 rounded"
           onClick={handleSubmit}
           disabled={loading}
         >

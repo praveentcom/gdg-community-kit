@@ -1,4 +1,4 @@
-import { EnumColorVariant } from "@/types/Color";
+import { EnumColorHex, EnumColorVariant } from "@/types/Color";
 import { ImageDimensions } from "@/types/Image";
 import generateGoogleSansFontStyles from "@/utils/generateGoogleSansFontStyles";
 import ReactDOMServer from "react-dom/server";
@@ -6,14 +6,13 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     logoText: {
-      top: 996,
-      left: 140,
+      top: 212,
+      left: 522,
       rightPadding: 100,
     },
   },
   font: {
-    color: "#4285F4",
-    size: 100,
+    size: 74,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
@@ -24,10 +23,12 @@ function Element({
   location,
   variant,
   dimensions,
+  fontColor,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
+  fontColor: EnumColorHex;
 }) {
   const { positions, font } = CONFIG;
 
@@ -64,7 +65,7 @@ function Element({
       >
         <p
           style={{
-            color: font.color,
+            color: fontColor,
             fontSize: `${font.size}px`,
             fontWeight: font.weight,
             fontFamily: font.family,
@@ -84,13 +85,20 @@ export default function getBrandLogoHorizontal({
   location,
   variant,
   dimensions,
+  fontColor,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
+  fontColor: EnumColorHex;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
-    <Element location={location} variant={variant} dimensions={dimensions} />,
+    <Element
+      location={location}
+      variant={variant}
+      dimensions={dimensions}
+      fontColor={fontColor}
+    />,
   );
 
   const fullHtml = `
