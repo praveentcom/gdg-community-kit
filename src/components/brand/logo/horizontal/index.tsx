@@ -7,7 +7,7 @@ const CONFIG = {
   positions: {
     logoText: {
       top: 212,
-      left: 522,
+      left: 520,
       rightPadding: 100,
     },
   },
