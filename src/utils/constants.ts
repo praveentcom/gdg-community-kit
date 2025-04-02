@@ -362,61 +362,6 @@ export const LANDING_BANNER_2500x471: ImageGenerationConfig[] = [
   },
 ];
 
-export const LANDING_BANNER_640x500_SKELETON: ImageGenerationConfig[] = [
-  {
-    id: "landing-banner-640x500-skeleton-blue",
-    name: "Landing_Banner_640x500_Skeleton_Blue.png",
-    folder: "Landing Banner/640x500",
-    variant: EnumColorVariant.BLUE,
-    dimensions: {
-      width: 640,
-      height: 500,
-    },
-    fontColor: EnumColorHex.BLUE,
-    bgImage: "skeleton",
-    generator: getBrandLandingBanner640x500,
-  },
-  {
-    id: "landing-banner-640x500-skeleton-green",
-    name: "Landing_Banner_640x500_Skeleton_Green.png",
-    folder: "Landing Banner/640x500",
-    variant: EnumColorVariant.GREEN,
-    dimensions: {
-      width: 640,
-      height: 500,
-    },
-    fontColor: EnumColorHex.GREEN,
-    bgImage: "skeleton",
-    generator: getBrandLandingBanner640x500,
-  },
-  {
-    id: "landing-banner-640x500-skeleton-yellow",
-    name: "Landing_Banner_640x500_Skeleton_Yellow.png",
-    folder: "Landing Banner/640x500",
-    variant: EnumColorVariant.YELLOW,
-    dimensions: {
-      width: 640,
-      height: 500,
-    },
-    fontColor: EnumColorHex.YELLOW,
-    bgImage: "skeleton",
-    generator: getBrandLandingBanner640x500,
-  },
-  {
-    id: "landing-banner-640x500-skeleton-red",
-    name: "Landing_Banner_640x500_Skeleton_Red.png",
-    folder: "Landing Banner/640x500",
-    variant: EnumColorVariant.RED,
-    dimensions: {
-      width: 640,
-      height: 500,
-    },
-    fontColor: EnumColorHex.RED,
-    bgImage: "skeleton",
-    generator: getBrandLandingBanner640x500,
-  },
-];
-
 export const LANDING_BANNER_1440x499_SKELETON: ImageGenerationConfig[] = [
   {
     id: "landing-banner-1440x499-skeleton-blue",

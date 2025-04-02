@@ -8,7 +8,7 @@ const CONFIG = {
     locationText: {
       top: 430,
       left: 180,
-      rightPadding: 10,
+      rightPadding: 20,
     },
   },
   font: {
@@ -23,14 +23,12 @@ function Element({
   location,
   variant,
   dimensions,
-  fontColor,
-  bgImage = null,
+  fontColor
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
-  fontColor: EnumColorHex;
-  bgImage?: string | null;
+  fontColor: EnumColorHex
 }) {
   const { positions, font } = CONFIG;
 
@@ -43,7 +41,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/640x500/${variant}/base_image${bgImage ? "_transparent" : ""}.png`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/640x500/${variant}/base_image.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
