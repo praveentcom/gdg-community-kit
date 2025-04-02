@@ -17,6 +17,8 @@ import {
   LANDING_BANNER_2500x471_SKELETON,
   STACKED_LOGO_VARIANTS,
   BEVY_BANNER,
+  BLOG_COVER_1024x512,
+  BLOG_COVER_2500x744,
 } from "@/utils/generationConfigs";
 
 export default async function handler(
@@ -41,6 +43,8 @@ export default async function handler(
     ...LANDING_BANNER_1440x499_SKELETON,
     ...LANDING_BANNER_2500x471_SKELETON,
     ...BEVY_BANNER,
+    ...BLOG_COVER_1024x512,
+    ...BLOG_COVER_2500x744
   ];
 
   const zip = new JSZip();
