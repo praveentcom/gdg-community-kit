@@ -6,7 +6,6 @@ import { EnumColorHex, EnumColorVariant } from "@/types/Color";
 import { ImageGenerationConfig } from "@/types/Config";
 
 import getBrandLogoStacked from "@/components/brand/logo/stacked";
-import getBrandLogoHorizontal from "@/components/brand/logo/horizontal";
 
 type Data = Buffer<ArrayBufferLike>;
 
