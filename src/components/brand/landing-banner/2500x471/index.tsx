@@ -12,7 +12,7 @@ const CONFIG = {
     },
   },
   font: {
-    size: 26,
+    size: 27,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
