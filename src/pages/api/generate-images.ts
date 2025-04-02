@@ -17,7 +17,7 @@ import {
   LANDING_BANNER_2500x471_SKELETON,
   STACKED_LOGO_VARIANTS,
   BEVY_BANNER,
-} from "@/utils/constants";
+} from "@/utils/generationConfigs";
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,4 +1,6 @@
 import getBrandBevyBanner from "@/components/brand/bevy-banner";
+import getBrandBlogCover1024x512 from "@/components/brand/blog-cover/1024x512";
+import getBrandBlogCover2500x744 from "@/components/brand/blog-cover/2500×744";
 import getBrandLandingBanner1440x499 from "@/components/brand/landing-banner/1440x499";
 import getBrandLandingBanner2500x471 from "@/components/brand/landing-banner/2500x471";
 import getBrandLandingBanner640x500 from "@/components/brand/landing-banner/640x500";
@@ -469,5 +471,107 @@ export const LANDING_BANNER_2500x471_SKELETON: ImageGenerationConfig[] = [
     fontColor: EnumColorHex.RED,
     bgImage: "skeleton",
     generator: getBrandLandingBanner2500x471,
+  },
+];
+
+export const BLOG_COVER_1024x512: ImageGenerationConfig[] = [
+  {
+    id: "blog-cover-1024x512-blue",
+    name: "Blog_Cover_1024x512_Blue.png",
+    folder: "Blog Cover/1024x512",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1024,
+      height: 512,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandBlogCover1024x512,
+  },
+  {
+    id: "blog-cover-1024x512-green",
+    name: "Blog_Cover_1024x512_Green.png",
+    folder: "Blog Cover/1024x512",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1024,
+      height: 512,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandBlogCover1024x512,
+  },
+  {
+    id: "blog-cover-1024x512-yellow",
+    name: "Blog_Cover_1024x512_Yellow.png",
+    folder: "Blog Cover/1024x512",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1024,
+      height: 512,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandBlogCover1024x512,
+  },
+  {
+    id: "blog-cover-1024x512-red",
+    name: "Blog_Cover_1024x512_Red.png",
+    folder: "Blog Cover/1024x512",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1024,
+      height: 512,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandBlogCover1024x512,
+  },
+];
+
+export const BLOG_COVER_2500x744: ImageGenerationConfig[] = [
+  {
+    id: "blog-cover-2500x744-blue",
+    name: "Blog_Cover_2500x744_Blue.png",
+    folder: "Blog Cover/2500x744",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2500,
+      height: 744,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandBlogCover2500x744,
+  },
+  {
+    id: "blog-cover-2500x744-green",
+    name: "Blog_Cover_2500x744_Green.png",
+    folder: "Blog Cover/2500x744",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2500,
+      height: 744,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandBlogCover2500x744,
+  },
+  {
+    id: "blog-cover-2500x744-yellow",
+    name: "Blog_Cover_2500x744_Yellow.png",
+    folder: "Blog Cover/2500x744",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2500,
+      height: 744,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandBlogCover2500x744,
+  },
+  {
+    id: "blog-cover-2500x744-red",
+    name: "Blog_Cover_2500x744_Red.png",
+    folder: "Blog Cover/2500x744",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2500,
+      height: 744,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandBlogCover2500x744,
   },
 ];
