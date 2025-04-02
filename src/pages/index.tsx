@@ -1,20 +1,20 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Home() {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true);
 
-    const res = await fetch('/api/generate-images', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    const res = await fetch("/api/generate-images", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ location }),
     });
 
     if (!res.ok) {
-      alert('Failed to generate image');
+      alert("Failed to generate image");
       setLoading(false);
       return;
     }
@@ -22,9 +22,9 @@ export default function Home() {
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'images.zip';
+    a.download = "images.zip";
     a.click();
 
     URL.revokeObjectURL(url);
@@ -45,7 +45,7 @@ export default function Home() {
           onClick={handleSubmit}
           disabled={loading}
         >
-          {loading ? 'Generating...' : 'Generate Image'}
+          {loading ? "Generating..." : "Generate Image"}
         </button>
       </div>
     </main>

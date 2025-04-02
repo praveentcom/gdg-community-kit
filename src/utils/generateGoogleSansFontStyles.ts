@@ -1,11 +1,11 @@
 const CONFIG = {
-    regular: '/fonts/google_sans_regular.woff2',
-    medium: '/fonts/google_sans_medium.woff2',
-    bold: '/fonts/google_sans_bold.woff2',
-}
+  regular: "/fonts/google_sans_regular.woff2",
+  medium: "/fonts/google_sans_medium.woff2",
+  bold: "/fonts/google_sans_bold.woff2",
+};
 
 export default function generateGoogleSansFontStyles() {
-    return `
+  return `
     <style>
         @font-face {
             font-family: 'Google Sans';

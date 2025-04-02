@@ -1,79 +1,107 @@
-import { EnumColorHex, EnumColorVariant } from '@/types/Color';
-import { ImageDimensions } from '@/types/Image';
-import generateGoogleSansFontStyles from '@/utils/generateGoogleSansFontStyles';
-import ReactDOMServer from 'react-dom/server';
+import { EnumColorHex, EnumColorVariant } from "@/types/Color";
+import { ImageDimensions } from "@/types/Image";
+import generateGoogleSansFontStyles from "@/utils/generateGoogleSansFontStyles";
+import ReactDOMServer from "react-dom/server";
 
 const CONFIG = {
-	positions: {
-		logoText: {
-			top: 996,
-			left: 140,
-			rightPadding: 100,
-		},
-	},
-	font: {
-		size: 100,
-		lineHeight: 1.2,
-		family: 'Google Sans',
-		weight: 'normal',
-	}
+  positions: {
+    logoText: {
+      top: 996,
+      left: 140,
+      rightPadding: 100,
+    },
+  },
+  font: {
+    size: 100,
+    lineHeight: 1.2,
+    family: "Google Sans",
+    weight: "normal",
+  },
 };
 
-function Element({ location, variant, dimensions, fontColor }: { location: string; variant: EnumColorVariant; dimensions: ImageDimensions, fontColor: EnumColorHex }) {
-	const { positions, font } = CONFIG;
+function Element({
+  location,
+  variant,
+  dimensions,
+  fontColor,
+}: {
+  location: string;
+  variant: EnumColorVariant;
+  dimensions: ImageDimensions;
+  fontColor: EnumColorHex;
+}) {
+  const { positions, font } = CONFIG;
 
-	return (
-		<div
-			style={{
-				height: `${dimensions.height}px`,
-				width: `${dimensions.width}px`,
-				position: 'relative',
-			}}>
-			<img
-				src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/logo/stacked/${variant}/base_image.png`}
-				alt="Brand Logo"
-				style={{
-					width: '100%',
-					height: '100%',
-					objectFit: 'cover',
-					position: 'absolute',
-					top: 0,
-					left: 0,
-				}}
-			/>
-			<div
-				style={{
-					position: 'absolute',
-					left: `${positions.logoText.left}px`,
-					top: `${positions.logoText.top}px`,
-					right: `${positions.logoText.rightPadding}px`,
-					display: 'flex',
-					alignItems: 'flex-start',
-					justifyContent: 'flex-start',
-				}}>
-				<p
-					style={{
-						color: fontColor,
-						fontSize: `${font.size}px`,
-						fontWeight: font.weight,
-						fontFamily: font.family,
-						margin: 0,
-						lineHeight: font.lineHeight,
-						wordBreak: 'break-word',
-					}}>
-					{location}
-				</p>
-			</div>
-		</div>
-	);
+  return (
+    <div
+      style={{
+        height: `${dimensions.height}px`,
+        width: `${dimensions.width}px`,
+        position: "relative",
+      }}
+    >
+      <img
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/logo/stacked/${variant}/base_image.png`}
+        alt="Brand Logo"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          position: "absolute",
+          top: 0,
+          left: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          left: `${positions.logoText.left}px`,
+          top: `${positions.logoText.top}px`,
+          right: `${positions.logoText.rightPadding}px`,
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "flex-start",
+        }}
+      >
+        <p
+          style={{
+            color: fontColor,
+            fontSize: `${font.size}px`,
+            fontWeight: font.weight,
+            fontFamily: font.family,
+            margin: 0,
+            lineHeight: font.lineHeight,
+            wordBreak: "break-word",
+          }}
+        >
+          {location}
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export default function getBrandLogoStacked({ location, variant, dimensions, fontColor }: { location: string; variant: EnumColorVariant; dimensions: ImageDimensions, fontColor: EnumColorHex }) {
-	const componentHtml = ReactDOMServer.renderToStaticMarkup(
-		<Element location={location} variant={variant} dimensions={dimensions} fontColor={fontColor} />
-	);
+export default function getBrandLogoStacked({
+  location,
+  variant,
+  dimensions,
+  fontColor,
+}: {
+  location: string;
+  variant: EnumColorVariant;
+  dimensions: ImageDimensions;
+  fontColor: EnumColorHex;
+}) {
+  const componentHtml = ReactDOMServer.renderToStaticMarkup(
+    <Element
+      location={location}
+      variant={variant}
+      dimensions={dimensions}
+      fontColor={fontColor}
+    />,
+  );
 
-	const fullHtml = `
+  const fullHtml = `
     <!DOCTYPE html>
     <html lang="en">
         <head>
@@ -95,5 +123,5 @@ export default function getBrandLogoStacked({ location, variant, dimensions, fon
         </body>
     </html>`;
 
-	return fullHtml;
+  return fullHtml;
 }

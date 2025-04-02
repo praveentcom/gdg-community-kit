@@ -1,22 +1,22 @@
-@import './fonts.css';
+@import "./fonts.css";
 
 @import "tailwindcss";
 
 @theme {
-    --color-google-blue: #4285f4;
-    --color-google-green: #34a853;
-    --color-google-yellow: #f9ab00;
-    --color-google-red: #ea4335;
-    --color-google-blue-halftone: #57caff;
-    --color-google-green-halftone: #5cdb6d;
-    --color-google-yellow-halftone: #ffd427;
-    --color-google-red-halftone: #ff7daf;
-    --color-google-blue-pastel: #c3ecf6;
-    --color-google-green-pastel: #ccf6c5;
-    --color-google-yellow-pastel: #ffe7a5;
-    --color-google-red-pastel: #f8d8d8;
-    --color-google-gs-white: #f0f0f0;
-    --color-google-gs-black: #1e1e1e;
+  --color-google-blue: #4285f4;
+  --color-google-green: #34a853;
+  --color-google-yellow: #f9ab00;
+  --color-google-red: #ea4335;
+  --color-google-blue-halftone: #57caff;
+  --color-google-green-halftone: #5cdb6d;
+  --color-google-yellow-halftone: #ffd427;
+  --color-google-red-halftone: #ff7daf;
+  --color-google-blue-pastel: #c3ecf6;
+  --color-google-green-pastel: #ccf6c5;
+  --color-google-yellow-pastel: #ffe7a5;
+  --color-google-red-pastel: #f8d8d8;
+  --color-google-gs-white: #f0f0f0;
+  --color-google-gs-black: #1e1e1e;
 
-    --font-google-sans: 'Google Sans', sans-serif;
+  --font-google-sans: "Google Sans", sans-serif;
 }
