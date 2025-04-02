@@ -1,17 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import puppeteer from "puppeteer";
+import chromium from '@sparticuz/chromium';
+import puppeteer from 'puppeteer-core';
+chromium.setGraphicsMode = false;
+
 import JSZip from "jszip";
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
 import { ImageGenerationConfig } from "@/types/Config";
 
 import getBrandLogoStacked from "@/components/brand/logo/stacked";
-
-type Data = Buffer<ArrayBufferLike>;
+import getPuppeteerBrowser from "@/utils/getPuppeteerBrowser";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>,
+  res: NextApiResponse,
 ) {
   if (req.method !== "POST") {
     console.log("request method not allowed", req.method);
@@ -99,7 +101,11 @@ export default async function handler(
 
   const zip = new JSZip();
 
-  const browser = await puppeteer.launch();
+  const browser = await getPuppeteerBrowser();
+    if (!browser) {
+        res.status(500).json({ error: "Failed to launch browser" });
+        return;
+    }
 
   for (const imageGen of IMAGE_GENERATORS) {
     const page = await browser.newPage();
@@ -116,7 +122,6 @@ export default async function handler(
       deviceScaleFactor: 1,
     });
     await page.setContent(html, { waitUntil: "networkidle0" });
-    await page.evaluateHandle("document.fonts.ready");
 
     const buffer = await page.screenshot({ omitBackground: true });
 
