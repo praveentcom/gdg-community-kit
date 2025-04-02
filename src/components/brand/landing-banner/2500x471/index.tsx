@@ -88,11 +88,13 @@ export default function getBrandLandingBanner2500x471({
   variant,
   dimensions,
   fontColor,
+  bgImage = null,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
+  bgImage?: string | null;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
@@ -100,6 +102,7 @@ export default function getBrandLandingBanner2500x471({
       variant={variant}
       dimensions={dimensions}
       fontColor={fontColor}
+      bgImage={bgImage}
     />,
   );
 

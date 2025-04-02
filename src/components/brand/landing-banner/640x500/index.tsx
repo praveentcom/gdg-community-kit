@@ -23,12 +23,12 @@ function Element({
   location,
   variant,
   dimensions,
-  fontColor
+  fontColor,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
-  fontColor: EnumColorHex
+  fontColor: EnumColorHex;
 }) {
   const { positions, font } = CONFIG;
 
