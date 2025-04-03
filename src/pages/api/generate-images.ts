@@ -75,7 +75,7 @@ export default async function handler(
     return;
   }
 
-  const concurrencyLimit = 4;
+  const concurrencyLimit = 2;
   const limit = pLimit(concurrencyLimit);
 
   try {

@@ -13,12 +13,13 @@ export default async function getPuppeteerBrowser() {
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath(),
       headless: chromium.headless,
+      protocolTimeout: 120000,
     });
   } else {
     return puppeteer.launch({
       headless: true,
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
-      protocolTimeout: 60000,
+      protocolTimeout: 120000,
     });
   }
 }
