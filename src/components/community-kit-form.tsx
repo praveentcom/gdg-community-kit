@@ -164,6 +164,7 @@ export function CommunityKitForm({
                   <a
                     href="https://github.com/praveentcom/gdg-community-kit"
                     className="underline underline-offset-4"
+                    target="_blank"
                   >
                     Give a star on GitHub
                   </a>
@@ -173,6 +174,7 @@ export function CommunityKitForm({
                   <a
                     href="mailto:mail@praveent.com"
                     className="underline underline-offset-4"
+                    target="_blank"
                   >
                     Report an issue
                   </a>
