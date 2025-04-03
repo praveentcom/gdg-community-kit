@@ -5,7 +5,7 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     locationText: {
-      top: 360,
+      top: 356,
       left: 1215,
       rightPadding: 25,
     },

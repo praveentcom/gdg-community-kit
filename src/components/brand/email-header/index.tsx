@@ -5,13 +5,13 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     locationText: {
-      top: 319,
-      left: 214,
+      top: 320,
+      left: 212,
       rightPadding: 25,
     },
   },
   font: {
-    size: 28,
+    size: 30,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
