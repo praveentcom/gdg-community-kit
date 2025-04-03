@@ -20,7 +20,7 @@ export default function HomePage() {
         <meta property="og:url" content="https://gdg.praveent.com" />
         <meta
           property="og:image"
-          content="https://gdg.praveent.com/illustrations/og.png"
+          content="https://gdg.praveent.com/images/illustrations/og.png"
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Community Kit Generator" />
@@ -32,7 +32,7 @@ export default function HomePage() {
         />
         <meta
           name="twitter:image"
-          content="https://gdg.praveent.com/illustrations/og.png"
+          content="https://gdg.praveent.com/images/illustrations/og.png"
         />
         <meta name="twitter:creator" content="@praveentcom" />
         <link rel="icon" href="/favicon.png" />
