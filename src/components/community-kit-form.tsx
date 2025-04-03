@@ -182,7 +182,7 @@ export function CommunityKitForm({
           </form>
           <div className="bg-muted relative hidden md:block">
             <img
-              src="/images/illustrations/gdg_1.png"
+              src="/images/illustrations/gdg_global_team.png"
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover"
             />
