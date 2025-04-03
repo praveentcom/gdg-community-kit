@@ -6,13 +6,13 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     locationText: {
-      top: 412,
-      left: 808,
+      top: 430,
+      left: 180,
       rightPadding: 20,
     },
   },
   font: {
-    size: 28.5,
+    size: 24,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
@@ -24,13 +24,11 @@ function Element({
   variant,
   dimensions,
   fontColor,
-  bgImage = null,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
 }) {
   const { positions, font } = CONFIG;
 
@@ -43,7 +41,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banner/1440x499/${variant}/base_image${bgImage ? "_transparent" : ""}.png`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banners/640x500/${variant}/base_image.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -83,18 +81,16 @@ function Element({
   );
 }
 
-export default function getBrandLandingBanner1440x499({
+export default function getBrandLandingBanner640x500({
   location,
   variant,
   dimensions,
   fontColor,
-  bgImage = null,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
@@ -102,7 +98,6 @@ export default function getBrandLandingBanner1440x499({
       variant={variant}
       dimensions={dimensions}
       fontColor={fontColor}
-      bgImage={bgImage}
     />,
   );
 

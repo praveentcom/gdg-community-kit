@@ -1,11 +1,13 @@
 import getBrandBevyBanner from "@/components/brand/bevy-banner";
 import getBrandBlogCover1024x512 from "@/components/brand/blog-cover/1024x512";
 import getBrandBlogCover2500x744 from "@/components/brand/blog-cover/2500×744";
-import getBrandLandingBanner1440x499 from "@/components/brand/landing-banner/1440x499";
-import getBrandLandingBanner2500x471 from "@/components/brand/landing-banner/2500x471";
-import getBrandLandingBanner640x500 from "@/components/brand/landing-banner/640x500";
+import getBrandLandingBanner1440x499 from "@/components/brand/landing-banners/1440x499";
+import getBrandLandingBanner2500x471 from "@/components/brand/landing-banners/2500x471";
+import getBrandLandingBanner640x500 from "@/components/brand/landing-banners/640x500";
+import getBrandLinkedInBanner from "@/components/brand/linkedin";
 import getBrandLogoHorizontal from "@/components/brand/logo/horizontal";
 import getBrandLogoStacked from "@/components/brand/logo/stacked";
+import getBrandTwitterBanner from "@/components/brand/twitter";
 
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
 import { ImageGenerationConfig } from "@/types/Config";
@@ -573,5 +575,217 @@ export const BLOG_COVER_2500x744: ImageGenerationConfig[] = [
     },
     fontColor: EnumColorHex.RED,
     generator: getBrandBlogCover2500x744,
+  },
+];
+
+export const LINKEDIN_BANNER: ImageGenerationConfig[] = [
+  {
+    id: "linkedin-banner-blue",
+    name: "LinkedIn_Banner_Blue.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandLinkedInBanner,
+  },
+  {
+    id: "linkedin-banner-green",
+    name: "LinkedIn_Banner_Green.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandLinkedInBanner,
+  },
+  {
+    id: "linkedin-banner-yellow",
+    name: "LinkedIn_Banner_Yellow.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandLinkedInBanner,
+  },
+  {
+    id: "linkedin-banner-red",
+    name: "LinkedIn_Banner_Red.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandLinkedInBanner,
+  },
+];
+
+export const LINKEDIN_BANNER_SKELETON: ImageGenerationConfig[] = [
+  {
+    id: "linkedin-banner-skeleton-blue",
+    name: "LinkedIn_Banner_Skeleton_Blue.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.BLUE,
+    bgImage: "skeleton",
+    generator: getBrandLinkedInBanner,
+  },
+  {
+    id: "linkedin-banner-skeleton-green",
+    name: "LinkedIn_Banner_Skeleton_Green.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.GREEN,
+    bgImage: "skeleton",
+    generator: getBrandLinkedInBanner,
+  },
+  {
+    id: "linkedin-banner-skeleton-yellow",
+    name: "LinkedIn_Banner_Skeleton_Yellow.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    bgImage: "skeleton",
+    generator: getBrandLinkedInBanner,
+  },
+  {
+    id: "linkedin-banner-skeleton-red",
+    name: "LinkedIn_Banner_Skeleton_Red.png",
+    folder: "LinkedIn",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2256,
+      height: 382,
+    },
+    fontColor: EnumColorHex.RED,
+    bgImage: "skeleton",
+    generator: getBrandLinkedInBanner,
+  },
+];
+
+export const TWITTER_BANNER: ImageGenerationConfig[] = [
+  {
+    id: "twitter-banner-blue",
+    name: "Twitter_Banner_Blue.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandTwitterBanner,
+  },
+  {
+    id: "twitter-banner-green",
+    name: "Twitter_Banner_Green.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandTwitterBanner,
+  },
+  {
+    id: "twitter-banner-yellow",
+    name: "Twitter_Banner_Yellow.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandTwitterBanner,
+  },
+  {
+    id: "twitter-banner-red",
+    name: "Twitter_Banner_Red.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandTwitterBanner,
+  },
+];
+
+export const TWITTER_BANNER_SKELETON: ImageGenerationConfig[] = [
+  {
+    id: "twitter-banner-skeleton-blue",
+    name: "Twitter_Banner_Skeleton_Blue.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.BLUE,
+    bgImage: "skeleton",
+    generator: getBrandTwitterBanner,
+  },
+  {
+    id: "twitter-banner-skeleton-green",
+    name: "Twitter_Banner_Skeleton_Green.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.GREEN,
+    bgImage: "skeleton",
+    generator: getBrandTwitterBanner,
+  },
+  {
+    id: "twitter-banner-skeleton-yellow",
+    name: "Twitter_Banner_Skeleton_Yellow.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    bgImage: "skeleton",
+    generator: getBrandTwitterBanner,
+  },
+  {
+    id: "twitter-banner-skeleton-red",
+    name: "Twitter_Banner_Skeleton_Red.png",
+    folder: "Twitter",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1500,
+      height: 500,
+    },
+    fontColor: EnumColorHex.RED,
+    bgImage: "skeleton",
+    generator: getBrandTwitterBanner,
   },
 ];

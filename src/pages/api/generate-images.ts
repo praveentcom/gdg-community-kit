@@ -19,6 +19,10 @@ import {
   BEVY_BANNER,
   BLOG_COVER_1024x512,
   BLOG_COVER_2500x744,
+  LINKEDIN_BANNER,
+  LINKEDIN_BANNER_SKELETON,
+  TWITTER_BANNER,
+  TWITTER_BANNER_SKELETON,
 } from "@/utils/generationConfigs";
 
 export default async function handler(
@@ -44,7 +48,11 @@ export default async function handler(
     ...LANDING_BANNER_2500x471_SKELETON,
     ...BEVY_BANNER,
     ...BLOG_COVER_1024x512,
-    ...BLOG_COVER_2500x744
+    ...BLOG_COVER_2500x744,
+    ...LINKEDIN_BANNER,
+    ...LINKEDIN_BANNER_SKELETON,
+    ...TWITTER_BANNER,
+    ...TWITTER_BANNER_SKELETON,
   ];
 
   const zip = new JSZip();
