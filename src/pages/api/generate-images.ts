@@ -23,6 +23,7 @@ import {
   LINKEDIN_BANNER_SKELETON,
   TWITTER_BANNER,
   TWITTER_BANNER_SKELETON,
+  EMAIL_HEADER,
 } from "@/utils/generationConfigs";
 
 export default async function handler(
@@ -53,6 +54,7 @@ export default async function handler(
     ...LINKEDIN_BANNER_SKELETON,
     ...TWITTER_BANNER,
     ...TWITTER_BANNER_SKELETON,
+    ...EMAIL_HEADER
   ];
 
   const zip = new JSZip();

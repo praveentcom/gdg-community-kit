@@ -1,6 +1,7 @@
 import getBrandBevyBanner from "@/components/brand/bevy-banner";
 import getBrandBlogCover1024x512 from "@/components/brand/blog-cover/1024x512";
 import getBrandBlogCover2500x744 from "@/components/brand/blog-cover/2500×744";
+import getBrandEmailHeader from "@/components/brand/email-header";
 import getBrandLandingBanner1440x499 from "@/components/brand/landing-banners/1440x499";
 import getBrandLandingBanner2500x471 from "@/components/brand/landing-banners/2500x471";
 import getBrandLandingBanner640x500 from "@/components/brand/landing-banners/640x500";
@@ -788,4 +789,55 @@ export const TWITTER_BANNER_SKELETON: ImageGenerationConfig[] = [
     bgImage: "skeleton",
     generator: getBrandTwitterBanner,
   },
+];
+
+export const EMAIL_HEADER: ImageGenerationConfig[] = [
+    {
+      id: "email-header-blue",
+      name: "Email_Header_Blue.png",
+      folder: "Email Header",
+      variant: EnumColorVariant.BLUE,
+      dimensions: {
+        width: 1244,
+        height: 388,
+      },
+      fontColor: EnumColorHex.BLUE,
+      generator: getBrandEmailHeader,
+    },
+    {
+      id: "email-header-green",
+      name: "Email_Header_Green.png",
+      folder: "Email Header",
+      variant: EnumColorVariant.GREEN,
+      dimensions: {
+        width: 1244,
+        height: 388,
+      },
+      fontColor: EnumColorHex.GREEN,
+      generator: getBrandEmailHeader,
+    },
+    {
+      id: "email-header-yellow",
+      name: "Email_Header_Yellow.png",
+      folder: "Email Header",
+      variant: EnumColorVariant.YELLOW,
+      dimensions: {
+        width: 1244,
+        height: 388,
+      },
+      fontColor: EnumColorHex.YELLOW,
+      generator: getBrandEmailHeader,
+    },
+    {
+      id: "email-header-red",
+      name: "Email_Header_Red.png",
+      folder: "Email Header",
+      variant: EnumColorVariant.RED,
+      dimensions: {
+        width: 1244,
+        height: 388,
+      },
+      fontColor: EnumColorHex.RED,
+      generator: getBrandEmailHeader,
+    },
 ];
