@@ -17,17 +17,12 @@ export default function Home() {
       alert("Failed to generate image");
       setLoading(false);
       return;
+    } else {
+      alert(
+        "Image generation request accepted. Check your email for the generated images, it might take a few minutes to receive.",
+      );
     }
 
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "images.zip";
-    a.click();
-
-    URL.revokeObjectURL(url);
     setLoading(false);
   };
 
