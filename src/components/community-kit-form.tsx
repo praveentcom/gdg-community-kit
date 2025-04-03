@@ -32,23 +32,23 @@ export function CommunityKitForm({
     const communityType = (e.target as HTMLFormElement).communityType.value;
 
     if (fullName.length < 2) {
-      toast.error("Please enter a valid name");
+      toast.warning("Please enter a valid name");
       return;
     }
     if (fullName.length > 50) {
-      toast.error("Name is too long");
+      toast.warning("Name is too long");
       return;
     }
 
     const isValidEmail = /\S+@\S+\.\S+/.test(email);
     if (!isValidEmail) {
-      toast.error("Please enter a valid email address");
+      toast.warning("Please enter a valid email address");
       return;
     }
 
     const isValidLocation = location.length > 2 && location.length < 50;
     if (!isValidLocation) {
-      toast.error("Please enter a valid location");
+      toast.warning("Please enter a valid location");
       return;
     }
 
@@ -69,12 +69,14 @@ export function CommunityKitForm({
               duration: 20000,
             },
           );
+        } else if (res.status === 429) {
+          toast.warning("Rate limit exceeded. Try again in after an hour.");
         } else {
-          toast.error("Failed to generate image");
+          toast.warning("Failed to generate image, please try later.");
         }
       })
-      .catch(() => {
-        toast.error("Failed to generate image");
+      .catch((error) => {
+        toast.warning("Failed to generate image - " + error.message);
       })
       .finally(() => {
         setIsLoading(false);

@@ -1,4 +1,5 @@
 # GDG Community Kit Generator
+
 Easily generate your community kit for GDG and other developer programs. The repo is currently not accepting any code contributions as of now; certain chore tasks are pending post-which, we'll accept active open-source contributions.
 
 ![og](https://github.com/user-attachments/assets/80cbfcf1-93cf-4a02-b23d-72f54890b368)

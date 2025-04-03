@@ -121,7 +121,5 @@ export default function getBrandBlogCover1024x512({
         </body>
     </html>`;
 
-    console.log(fullHtml);
-
   return fullHtml;
 }
