@@ -2,6 +2,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getTasksClient } from "@/utils/google/tasks";
 import emailValidator from "email-validator";
 
+import { validateTurnstileToken } from "next-turnstile";
+import { v4 } from "uuid";
+
 import Redis from "ioredis";
 const redis = new Redis(process.env.REDIS_URL ?? "");
 
@@ -11,13 +14,27 @@ export default async function handler(
 ) {
   if (req.method !== "POST") return res.status(405).end();
 
-  const { location, email, fullName, communityType } = req.body;
+  const { location, email, fullName, communityType, token } = req.body;
 
-  if (!location || !email || !fullName || !communityType)
+  if (!location || !email || !fullName || !communityType || !token)
     return res.status(400).json({ error: "Missing fields" });
 
   if (!emailValidator.validate(email)) {
     return res.status(400).json({ error: "Invalid email address" });
+  }
+
+  const validationResponse = await validateTurnstileToken({
+    token,
+    secretKey: process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY!,
+    idempotencyKey: v4(),
+    sandbox: process.env.NODE_ENV === "development",
+  });
+
+  if (!validationResponse.success) {
+    return res.status(401).json({
+        error: "Turnstile validation failed",
+        errorCodes: validationResponse.error_codes,
+    });
   }
 
   const dailyLimitKey = `daily-request-count:${new Date().toISOString().slice(0, 10)}`;

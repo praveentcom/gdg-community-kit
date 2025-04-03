@@ -16,12 +16,16 @@ import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { Turnstile } from "next-turnstile";
 
 export function CommunityKitForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [turnstileStatus, setTurnstileStatus] = useState<
+    "success" | "error" | "expired" | "required"
+  >("required");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,6 +34,12 @@ export function CommunityKitForm({
     const email = (e.target as HTMLFormElement).email.value;
     const location = (e.target as HTMLFormElement).location.value;
     const communityType = (e.target as HTMLFormElement).communityType.value;
+    const token = (e.target as HTMLFormElement)["cf-turnstile-response"].value;
+
+    if (turnstileStatus !== "success" || !token) {
+      toast.warning("Please verify the security check");
+      return;
+    }
 
     if (fullName.length < 2) {
       toast.warning("Please enter a valid name");
@@ -60,6 +70,7 @@ export function CommunityKitForm({
         fullName,
         email,
         communityType,
+        token
       })
       .then((res) => {
         if (res.status === 200) {
@@ -149,6 +160,31 @@ export function CommunityKitForm({
                     Only the location name, e.g. New Delhi, London, etc.
                     Don&apos;t add GDG before the location name.
                   </Label>
+                </div>
+                <div className="grid">
+                <Turnstile
+              siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!}
+              retry="auto"
+              theme="light"
+              size="normal"
+              refreshExpired="auto"
+              sandbox={process.env.NODE_ENV === "development"}
+              onError={() => {
+                setTurnstileStatus("error");
+                toast.error("Security check failed. Please try again.");
+              }}
+              onExpire={() => {
+                setTurnstileStatus("expired");
+                toast.error("Security check expired. Please verify again.");
+              }}
+              onLoad={() => {
+                setTurnstileStatus("required");
+              }}
+              onVerify={(token) => {
+                setTurnstileStatus("success");
+              }}
+              className="w-full"
+            />
                 </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? <Loader2 className="animate-spin" /> : null}
