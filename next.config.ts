@@ -11,6 +11,13 @@ const nextConfig: NextConfig = {
         pathname: "**",
         search: "",
       },
+      {
+        protocol: "https",
+        hostname: "gdg.praveent.com",
+        port: "",
+        pathname: "**",
+        search: "",
+      },
     ],
   },
 };

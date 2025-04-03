@@ -1,0 +1,81 @@
+name: Deploy Application
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "22"
+
+      - name: Install dependencies on runner (optional)
+        run: npm install
+
+      - name: Create deployment archive (excluding node_modules)
+        run: |
+          # Create an archive of all files except node_modules
+          tar --exclude='./node_modules' -czf deploy-gdg.tar.gz .
+
+      - name: Copy deployment archive to VM
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          password: ${{ secrets.VM_PASSWORD }}
+          port: 22
+          source: "deploy-gdg.tar.gz"
+          target: "/tmp/deploy-gdg.tar.gz"
+
+      - name: Deploy on VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          password: ${{ secrets.VM_PASSWORD }}
+          port: 22
+          script: |
+            # Use a lock file to prevent parallel deployments
+            (
+              flock -n 200 || { echo "Deployment in progress. Exiting."; exit 1; }
+              
+              echo "Stopping pm2 process (if running)..."
+              if pm2 describe gdg > /dev/null 2>&1; then
+                pm2 stop gdg
+              fi
+
+              # Change to the deployment directory
+              cd /var/www/gdg || { echo "Directory not found"; exit 1; }
+              
+              echo "Removing existing files except node_modules..."
+              # Delete all files and directories except node_modules
+              find . -maxdepth 1 -mindepth 1 ! -name "node_modules" -exec rm -rf {} +
+
+              echo "Extracting new deployment files..."
+              tar -xzf /tmp/deploy-gdg.tar.gz -C .
+
+              echo "Cleaning up temporary archive..."
+              rm /tmp/deploy-gdg.tar.gz
+
+              echo "Installing dependencies and building the app..."
+              npm install
+              npm run build
+
+              echo "Starting pm2 process..."
+              # If the process is already registered, start it; otherwise, create a new one.
+              if pm2 describe gdg > /dev/null 2>&1; then
+                pm2 restart gdg
+              else
+                pm2 start npm --name "gdg" -- run start
+              fi
+
+            ) 200>/tmp/deploy.lock

@@ -2,10 +2,10 @@ import chromium from "@sparticuz/chromium";
 import puppeteerCore from "puppeteer-core";
 import puppeteer from "puppeteer";
 
-const isProduction = process.env.VERCEL === "1";
+const isServerless = process.env.VERCEL === "1";
 
 export default async function getPuppeteerBrowser() {
-  if (isProduction) {
+  if (isServerless) {
     chromium.setGraphicsMode = false;
 
     return puppeteerCore.launch({
