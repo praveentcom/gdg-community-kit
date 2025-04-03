@@ -1,5 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getTasksClient } from "@/utils/google/tasks";
+import emailValidator from "email-validator";
+
+import Redis from "ioredis";
+const redis = new Redis(process.env.REDIS_URL ?? '');
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,6 +15,18 @@ export default async function handler(
 
   if (!location || !email || !fullName || !communityType)
     return res.status(400).json({ error: "Missing fields" });
+
+  if (!emailValidator.validate(email)) {
+    return res.status(400).json({ error: "Invalid email address" });
+  }
+
+  const cacheKey = `accept-request:${email}`;
+  const isDuplicate = await redis.get(cacheKey);
+  if (isDuplicate) {
+    return res.status(429).json({ error: "Duplicate request detected" });
+  }
+
+  await redis.set(cacheKey, "true", "EX", 3600);
 
   const project = `${process.env.GOOGLE_CLOUD_PROJECT_ID}`;
   const queue = `${process.env.GOOGLE_CLOUD_TASKS_QUEUE}`;
