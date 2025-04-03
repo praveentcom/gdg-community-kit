@@ -23,7 +23,7 @@ jobs:
           script: |
             # Use a lock file to prevent parallel deployments
             (
-              flock -n 200 || { echo "Deployment in progress. Exiting."; exit 1; }
+              flock -w 300 200 || { echo "Could not acquire deployment lock after waiting. Exiting."; exit 1; }
 
               echo "Stopping pm2 process (if running)..."
               if pm2 describe gdg > /dev/null 2>&1; then
