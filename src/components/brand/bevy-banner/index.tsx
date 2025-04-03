@@ -1,6 +1,5 @@
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
 import { ImageDimensions } from "@/types/Image";
-import generateGoogleSansFontStyles from "@/utils/common/generateGoogleSansFontStyles";
 import ReactDOMServer from "react-dom/server";
 
 const CONFIG = {
