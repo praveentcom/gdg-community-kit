@@ -3,7 +3,7 @@ import { getTasksClient } from "@/utils/google/tasks";
 import emailValidator from "email-validator";
 
 import Redis from "ioredis";
-const redis = new Redis(process.env.REDIS_URL ?? '');
+const redis = new Redis(process.env.REDIS_URL ?? "");
 
 export default async function handler(
   req: NextApiRequest,

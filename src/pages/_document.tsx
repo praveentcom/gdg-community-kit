@@ -1,4 +1,3 @@
-import { Toaster } from "@/components/ui/sonner";
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
@@ -8,7 +7,6 @@ export default function Document() {
       <body className="antialiased">
         <Main />
         <NextScript />
-        <Toaster richColors />
       </body>
     </Html>
   );
