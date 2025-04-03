@@ -33,10 +33,8 @@ jobs:
               # Change to the deployment directory
               cd /var/www/gdg || { echo "Deployment directory not found"; exit 1; }
               
-              echo "Deleting existing files except node_modules..."
-              # Delete all files and directories except the node_modules folder.
-              # (If your deployment folder is also a git repo, consider preserving the .git folder.)
-              find . -maxdepth 1 -mindepth 1 ! -name "node_modules" -exec rm -rf {} +
+              echo "Deleting existing files except node_modules and .env..."
+              find . -maxdepth 1 -mindepth 1 ! -name "node_modules" ! -name ".env" -exec rm -rf {} +
 
               echo "Cloning repository to a temporary folder..."
               git clone https://github.com/praveentcom/gdg-community-kit.git /tmp/gdg-community-kit
