@@ -32,9 +32,6 @@ jobs:
 
               # Change to the deployment directory
               cd /var/www/gdg || { echo "Deployment directory not found"; exit 1; }
-
-              echo "Fixing ownership so files are writable..."
-              sudo chown -R $(whoami):$(whoami) .
               
               echo "Deleting existing files except node_modules and .env..."
               find . -maxdepth 1 -mindepth 1 ! -name "node_modules" ! -name ".env" -exec rm -rf {} +
