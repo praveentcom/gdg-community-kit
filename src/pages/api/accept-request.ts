@@ -20,6 +20,15 @@ export default async function handler(
     return res.status(400).json({ error: "Invalid email address" });
   }
 
+  const dailyLimitKey = `daily-request-count:${new Date().toISOString().slice(0, 10)}`;
+  const currentCount = await redis.incr(dailyLimitKey);
+
+  if (currentCount === 1) {
+    await redis.expire(dailyLimitKey, 86400);
+  } else if (currentCount > 500) {
+    return res.status(429).json({ error: "Daily request limit exceeded" });
+  }
+
   const cacheKey = `accept-request:${email}`;
   const isDuplicate = await redis.get(cacheKey);
   if (isDuplicate) {
