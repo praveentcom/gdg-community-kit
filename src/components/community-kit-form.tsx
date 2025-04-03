@@ -73,7 +73,7 @@ export function CommunityKitForm({
           toast.error("Failed to generate image");
         }
       })
-      .catch((err) => {
+      .catch(() => {
         toast.error("Failed to generate image");
       })
       .finally(() => {
@@ -90,7 +90,7 @@ export function CommunityKitForm({
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-xl font-bold">Howdy, organiser!</h1>
                 <p className="text-md text-muted-foreground text-balance">
-                  Let's generate your community kit
+                  Let&apos;s generate your community kit
                 </p>
               </div>
               <div className="grid gap-6">
@@ -144,7 +144,7 @@ export function CommunityKitForm({
                     className="text-xs font-normal text-muted-foreground"
                     htmlFor="location"
                   >
-                    Only the location name, e.g. New Delhi, London, etc. Don't
+                    Only the location name, e.g. New Delhi, London, etc. Don&apos;t
                     add GDG before the location name.
                   </Label>
                 </div>
