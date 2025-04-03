@@ -8,7 +8,7 @@ const CONFIG = {
     locationText: {
       top: 592,
       left: 426,
-      rightPadding: 20,
+      rightPadding: 25,
     },
   },
   font: {

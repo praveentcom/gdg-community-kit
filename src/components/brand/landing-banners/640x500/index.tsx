@@ -8,11 +8,11 @@ const CONFIG = {
     locationText: {
       top: 430,
       left: 180,
-      rightPadding: 20,
+      rightPadding: 25,
     },
   },
   font: {
-    size: 24,
+    size: 25,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",

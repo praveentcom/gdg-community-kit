@@ -6,13 +6,13 @@ import ReactDOMServer from "react-dom/server";
 const CONFIG = {
   positions: {
     locationText: {
-      top: 124,
-      left: 250,
+      top: 406,
+      left: 248,
       rightPadding: 25,
     },
   },
   font: {
-    size: 27,
+    size: 35,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
@@ -24,11 +24,13 @@ function Element({
   variant,
   dimensions,
   fontColor,
+  bgImage = null,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
+  bgImage?: string | null;
 }) {
   const { positions, font } = CONFIG;
 
@@ -41,7 +43,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/blog-covers/1024x512/${variant}/base_image.png`}
+        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/website-banners/1440x499/${variant}/base_image${bgImage ? "_transparent" : ""}.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -81,16 +83,18 @@ function Element({
   );
 }
 
-export default function getBrandBlogCover1024x512({
+export default function getBrandWebsiteBanner1440x499({
   location,
   variant,
   dimensions,
   fontColor,
+  bgImage = null,
 }: {
   location: string;
   variant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
+  bgImage?: string | null;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
@@ -98,6 +102,7 @@ export default function getBrandBlogCover1024x512({
       variant={variant}
       dimensions={dimensions}
       fontColor={fontColor}
+      bgImage={bgImage}
     />,
   );
 

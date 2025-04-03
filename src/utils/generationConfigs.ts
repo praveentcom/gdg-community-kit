@@ -9,6 +9,9 @@ import getBrandLinkedInBanner from "@/components/brand/linkedin";
 import getBrandLogoHorizontal from "@/components/brand/logo/horizontal";
 import getBrandLogoStacked from "@/components/brand/logo/stacked";
 import getBrandTwitterBanner from "@/components/brand/twitter";
+import getBrandWebsiteBanner1440x499 from "@/components/brand/website-banners/1440x499";
+import getBrandWebsiteBanner2500x471 from "@/components/brand/website-banners/2500x471";
+import getBrandWebsiteBanner640x500 from "@/components/brand/website-banners/640x500";
 
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
 import { ImageGenerationConfig } from "@/types/Config";
@@ -792,52 +795,315 @@ export const TWITTER_BANNER_SKELETON: ImageGenerationConfig[] = [
 ];
 
 export const EMAIL_HEADER: ImageGenerationConfig[] = [
-    {
-      id: "email-header-blue",
-      name: "Email_Header_Blue.png",
-      folder: "Email Header",
-      variant: EnumColorVariant.BLUE,
-      dimensions: {
-        width: 1244,
-        height: 388,
-      },
-      fontColor: EnumColorHex.BLUE,
-      generator: getBrandEmailHeader,
+  {
+    id: "email-header-blue",
+    name: "Email_Header_Blue.png",
+    folder: "Email Header",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1244,
+      height: 388,
     },
-    {
-      id: "email-header-green",
-      name: "Email_Header_Green.png",
-      folder: "Email Header",
-      variant: EnumColorVariant.GREEN,
-      dimensions: {
-        width: 1244,
-        height: 388,
-      },
-      fontColor: EnumColorHex.GREEN,
-      generator: getBrandEmailHeader,
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandEmailHeader,
+  },
+  {
+    id: "email-header-green",
+    name: "Email_Header_Green.png",
+    folder: "Email Header",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1244,
+      height: 388,
     },
-    {
-      id: "email-header-yellow",
-      name: "Email_Header_Yellow.png",
-      folder: "Email Header",
-      variant: EnumColorVariant.YELLOW,
-      dimensions: {
-        width: 1244,
-        height: 388,
-      },
-      fontColor: EnumColorHex.YELLOW,
-      generator: getBrandEmailHeader,
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandEmailHeader,
+  },
+  {
+    id: "email-header-yellow",
+    name: "Email_Header_Yellow.png",
+    folder: "Email Header",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1244,
+      height: 388,
     },
-    {
-      id: "email-header-red",
-      name: "Email_Header_Red.png",
-      folder: "Email Header",
-      variant: EnumColorVariant.RED,
-      dimensions: {
-        width: 1244,
-        height: 388,
-      },
-      fontColor: EnumColorHex.RED,
-      generator: getBrandEmailHeader,
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandEmailHeader,
+  },
+  {
+    id: "email-header-red",
+    name: "Email_Header_Red.png",
+    folder: "Email Header",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1244,
+      height: 388,
     },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandEmailHeader,
+  },
+];
+
+export const WEBSITE_BANNER_1440x499: ImageGenerationConfig[] = [
+  {
+    id: "website-banner-1440x499-blue",
+    name: "Website_Banner_1440x499_Blue.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandWebsiteBanner1440x499,
+  },
+  {
+    id: "website-banner-1440x499-green",
+    name: "Website_Banner_1440x499_Green.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandWebsiteBanner1440x499,
+  },
+  {
+    id: "website-banner-1440x499-yellow",
+    name: "Website_Banner_1440x499_Yellow.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandWebsiteBanner1440x499,
+  },
+  {
+    id: "website-banner-1440x499-red",
+    name: "Website_Banner_1440x499_Red.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandWebsiteBanner1440x499,
+  },
+];
+
+export const WEBSITE_BANNER_640x500: ImageGenerationConfig[] = [
+  {
+    id: "website-banner-640x500-blue",
+    name: "Website_Banner_640x500_Blue.png",
+    folder: "Website Banner/640x500",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandWebsiteBanner640x500,
+  },
+  {
+    id: "website-banner-640x500-green",
+    name: "Website_Banner_640x500_Green.png",
+    folder: "Website Banner/640x500",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandWebsiteBanner640x500,
+  },
+  {
+    id: "website-banner-640x500-yellow",
+    name: "Website_Banner_640x500_Yellow.png",
+    folder: "Website Banner/640x500",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandWebsiteBanner640x500,
+  },
+  {
+    id: "website-banner-640x500-red",
+    name: "Website_Banner_640x500_Red.png",
+    folder: "Website Banner/640x500",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 640,
+      height: 500,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandWebsiteBanner640x500,
+  },
+];
+
+export const WEBSITE_BANNER_2500x471: ImageGenerationConfig[] = [
+  {
+    id: "website-banner-2500x471-blue",
+    name: "Website_Banner_2500x471_Blue.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.BLUE,
+    generator: getBrandWebsiteBanner2500x471,
+  },
+  {
+    id: "website-banner-2500x471-green",
+    name: "Website_Banner_2500x471_Green.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.GREEN,
+    generator: getBrandWebsiteBanner2500x471,
+  },
+  {
+    id: "website-banner-2500x471-yellow",
+    name: "Website_Banner_2500x471_Yellow.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    generator: getBrandWebsiteBanner2500x471,
+  },
+  {
+    id: "website-banner-2500x471-red",
+    name: "Website_Banner_2500x471_Red.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.RED,
+    generator: getBrandWebsiteBanner2500x471,
+  },
+];
+
+export const WEBSITE_BANNER_1440x499_SKELETON: ImageGenerationConfig[] = [
+  {
+    id: "website-banner-1440x499-skeleton-blue",
+    name: "Website_Banner_1440x499_Skeleton_Blue.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.BLUE,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner1440x499,
+  },
+  {
+    id: "website-banner-1440x499-skeleton-green",
+    name: "Website_Banner_1440x499_Skeleton_Green.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.GREEN,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner1440x499,
+  },
+  {
+    id: "website-banner-1440x499-skeleton-yellow",
+    name: "Website_Banner_1440x499_Skeleton_Yellow.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner1440x499,
+  },
+  {
+    id: "website-banner-1440x499-skeleton-red",
+    name: "Website_Banner_1440x499_Skeleton_Red.png",
+    folder: "Website Banner/1440x499",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 1440,
+      height: 499,
+    },
+    fontColor: EnumColorHex.RED,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner1440x499,
+  },
+];
+
+export const WEBSITE_BANNER_2500x471_SKELETON: ImageGenerationConfig[] = [
+  {
+    id: "website-banner-2500x471-skeleton-blue",
+    name: "Website_Banner_2500x471_Skeleton_Blue.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.BLUE,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.BLUE,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner2500x471,
+  },
+  {
+    id: "website-banner-2500x471-skeleton-green",
+    name: "Website_Banner_2500x471_Skeleton_Green.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.GREEN,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.GREEN,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner2500x471,
+  },
+  {
+    id: "website-banner-2500x471-skeleton-yellow",
+    name: "Website_Banner_2500x471_Skeleton_Yellow.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.YELLOW,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.YELLOW,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner2500x471,
+  },
+  {
+    id: "website-banner-2500x471-skeleton-red",
+    name: "Website_Banner_2500x471_Skeleton_Red.png",
+    folder: "Website Banner/2500x471",
+    variant: EnumColorVariant.RED,
+    dimensions: {
+      width: 2500,
+      height: 471,
+    },
+    fontColor: EnumColorHex.RED,
+    bgImage: "skeleton",
+    generator: getBrandWebsiteBanner2500x471,
+  },
 ];
