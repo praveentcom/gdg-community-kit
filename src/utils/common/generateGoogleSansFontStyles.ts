@@ -5,7 +5,7 @@ const CONFIG = {
 };
 
 export default function generateGoogleSansFontStyles() {
-    console.log(process.env.BASE_URL);
+  console.log(process.env.BASE_URL);
   return `
     <link rel="preload" href="${process.env.BASE_URL}${CONFIG.regular}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="${process.env.BASE_URL}${CONFIG.medium}" as="font" type="font/woff2" crossorigin>

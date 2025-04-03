@@ -144,8 +144,8 @@ export function CommunityKitForm({
                     className="text-xs font-normal text-muted-foreground"
                     htmlFor="location"
                   >
-                    Only the location name, e.g. New Delhi, London, etc. Don&apos;t
-                    add GDG before the location name.
+                    Only the location name, e.g. New Delhi, London, etc.
+                    Don&apos;t add GDG before the location name.
                   </Label>
                 </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
