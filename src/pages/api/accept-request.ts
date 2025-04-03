@@ -32,8 +32,8 @@ export default async function handler(
 
   if (!validationResponse.success) {
     return res.status(401).json({
-        error: "Turnstile validation failed",
-        errorCodes: validationResponse.error_codes,
+      error: "Turnstile validation failed",
+      errorCodes: validationResponse.error_codes,
     });
   }
 

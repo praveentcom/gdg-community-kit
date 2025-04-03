@@ -70,7 +70,7 @@ export function CommunityKitForm({
         fullName,
         email,
         communityType,
-        token
+        token,
       })
       .then((res) => {
         if (res.status === 200) {
@@ -162,29 +162,33 @@ export function CommunityKitForm({
                   </Label>
                 </div>
                 <div className="grid">
-                <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!}
-              retry="auto"
-              theme="light"
-              size="normal"
-              refreshExpired="auto"
-              sandbox={process.env.NODE_ENV === "development"}
-              onError={() => {
-                setTurnstileStatus("error");
-                toast.error("Security check failed. Please try again.");
-              }}
-              onExpire={() => {
-                setTurnstileStatus("expired");
-                toast.error("Security check expired. Please verify again.");
-              }}
-              onLoad={() => {
-                setTurnstileStatus("required");
-              }}
-              onVerify={(token) => {
-                setTurnstileStatus("success");
-              }}
-              className="w-full"
-            />
+                  <Turnstile
+                    siteKey={
+                      process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!
+                    }
+                    retry="auto"
+                    theme="light"
+                    size="normal"
+                    refreshExpired="auto"
+                    sandbox={process.env.NODE_ENV === "development"}
+                    onError={() => {
+                      setTurnstileStatus("error");
+                      toast.error("Security check failed. Please try again.");
+                    }}
+                    onExpire={() => {
+                      setTurnstileStatus("expired");
+                      toast.error(
+                        "Security check expired. Please verify again.",
+                      );
+                    }}
+                    onLoad={() => {
+                      setTurnstileStatus("required");
+                    }}
+                    onVerify={() => {
+                      setTurnstileStatus("success");
+                    }}
+                    className="w-full"
+                  />
                 </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? <Loader2 className="animate-spin" /> : null}
