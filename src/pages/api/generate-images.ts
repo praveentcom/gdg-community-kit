@@ -164,7 +164,7 @@ export default async function handler(
       from: "gdg-community-kit@mail.praveent.com",
       to: email,
       subject: `Community Kit generated for ${communityParsed} ${location}`,
-      html: `<p>Hey ${fullName}.<br/><br/>We've generated your Community Kit for <strong>${communityParsed} ${location}</strong>. Use this <a href="${signedUrl}" target="_blank">link</a> to download (valid for 30 days).<br/><br/>♥️ We wish your community to scale heights. Found the tool useful? Leave a star on <a href="https://github.com/praveentcom/gdg-community-kit" target="_blank">GitHub</a>.<br/><br/>Thanks,<br/>Praveen Thirumurugan.</p>`,
+      html: `<p>Hey ${`${fullName}`.split(" ")[0]} 👋🏼<br/><br/>We've successfully generated branding assets for <strong>${communityParsed} ${location}</strong> community. Use this <a href="${signedUrl}" target="_blank">hosted link</a> to download the kit (the link will remain valid for 30 days).<br/><br/>♥️ We wish you and your community to scale heights. Found the tool useful? Consider leaving a star on <a href="https://github.com/praveentcom/gdg-community-kit" target="_blank">GitHub</a>.<br/><br/>Thanks with regards,<br/>Praveen Thirumurugan.</p>`,
     });
 
     return res.status(200).json({ success: true });
