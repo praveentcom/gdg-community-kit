@@ -64,7 +64,7 @@ export function CommunityKitForm({
       .then((res) => {
         if (res.status === 200) {
           toast.success(
-            "Request accepted, generating your kit. You'll receive an email once it's generated.",
+            `${`${fullName}`.split(" ")[0]}, we're generating your kit. You'll receive an email once it's generated.`,
             {
               duration: 20000,
             },
@@ -184,9 +184,9 @@ export function CommunityKitForm({
           </form>
           <div className="bg-muted relative hidden md:block">
             <img
-              src="/images/illustrations/gdg_global_team.png"
+              src="/images/illustrations/gdg_sticker.png"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover"
+              className="absolute inset-0 h-full w-full object-cover grayscale"
             />
           </div>
         </CardContent>
