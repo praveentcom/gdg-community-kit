@@ -57,4 +57,4 @@ jobs:
               else
                 pm2 start npm --name "gdg" -- run start
               fi
-            ) 200>/tmp/deploy.lock
+            ) 200>/tmp/deploy-gdg.lock
