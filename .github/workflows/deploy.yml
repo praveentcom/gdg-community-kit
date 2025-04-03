@@ -21,7 +21,6 @@ jobs:
           password: ${{ secrets.VM_PASSWORD }}
           port: 22
           script: |
-            # Use a lock file to prevent parallel deployments
             (
               flock -w 300 200 || { echo "Could not acquire deployment lock after waiting. Exiting."; exit 1; }
 
@@ -35,6 +34,10 @@ jobs:
               
               echo "Deleting existing files except node_modules and .env..."
               find . -maxdepth 1 -mindepth 1 ! -name "node_modules" ! -name ".env" -exec rm -rf {} +
+
+              # Add GitHub to known_hosts
+              echo "Adding GitHub to known_hosts..."
+              ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
               echo "Cloning repository to a temporary folder..."
               git clone git@github.com:praveentcom/gdg-community-kit.git /tmp/gdg-community-kit
@@ -50,7 +53,6 @@ jobs:
 
               echo "Building the application..."
               npm run build
-
 
               echo "Starting (or restarting) pm2 process..."
               if pm2 describe gdg > /dev/null 2>&1; then
