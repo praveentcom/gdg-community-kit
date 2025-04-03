@@ -97,7 +97,9 @@ export default async function handler(
             deviceScaleFactor: 1,
           });
 
-          await page.setContent(html, { waitUntil: "networkidle0" });
+          await page.setContent(html, { waitUntil: "networkidle2" });
+
+          page.setDefaultTimeout(60000);
 
           const buffer = await page.screenshot({ omitBackground: true });
 
