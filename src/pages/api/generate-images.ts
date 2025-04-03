@@ -161,7 +161,7 @@ export default async function handler(
 
     // Send email with link
     await resend.emails.send({
-      from: "gdg-community-kit@mail.praveent.com",
+      from: "GDG Community Kit <gdg-community-kit@mail.praveent.com>",
       to: email,
       subject: `Community Kit generated for ${communityParsed} ${location}`,
       html: `<p>Hey ${`${fullName}`.split(" ")[0]} 👋🏼<br/><br/>We've successfully generated branding assets for <strong>${communityParsed} ${location}</strong> community. Use this <a href="${signedUrl}" target="_blank">hosted link</a> to download the kit (the link will remain valid for 30 days).<br/><br/>♥️ We wish you and your community to scale heights. Found the tool useful? Consider leaving a star on <a href="https://github.com/praveentcom/gdg-community-kit" target="_blank">GitHub</a>.<br/><br/>Thanks with regards,<br/>Praveen Thirumurugan.</p>`,
