@@ -7,10 +7,10 @@ export default function Home() {
   const handleSubmit = async () => {
     setLoading(true);
 
-    const res = await fetch("/api/generate-images", {
+    const res = await fetch("/api/accept-request", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ location }),
+      body: JSON.stringify({ location, email: "mail@praveent.com" }),
     });
 
     if (!res.ok) {

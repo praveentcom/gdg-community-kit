@@ -4,9 +4,9 @@ import chromium from "@sparticuz/chromium";
 chromium.setGraphicsMode = false;
 
 import pLimit from "p-limit";
-
 import JSZip from "jszip";
-import getPuppeteerBrowser from "@/utils/getPuppeteerBrowser";
+
+import getPuppeteerBrowser from "@/utils/common/getPuppeteerBrowser";
 
 import {
   HORIZONTAL_LOGO_VARIANTS,
@@ -29,7 +29,15 @@ import {
   WEBSITE_BANNER_1440x499_SKELETON,
   WEBSITE_BANNER_2500x471,
   WEBSITE_BANNER_2500x471_SKELETON,
-} from "@/utils/generationConfigs";
+} from "@/utils/common/generationConfigs";
+
+import { Resend } from "resend";
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+import { getStorageClient } from "@/utils/google/storage";
+const storage = getStorageClient();
+
+const BUCKET_NAME = `${process.env.GOOGLE_CLOUD_STORAGE_BUCKET}`;
 
 export default async function handler(
   req: NextApiRequest,
@@ -42,7 +50,7 @@ export default async function handler(
     return;
   }
 
-  const { location } = req.body;
+  const { location, email } = req.body;
 
   const IMAGE_GENERATORS = [
     ...STACKED_LOGO_VARIANTS,
@@ -116,14 +124,32 @@ export default async function handler(
 
     await browser.close();
 
-    const zipBuffer = await zip.generateAsync({ type: "nodebuffer" });
+    const buffer = await zip.generateAsync({ type: "nodebuffer" });
 
-    res.setHeader("Content-Type", "application/zip");
-    res.setHeader(
-      "Content-Disposition",
-      "attachment; filename=GDG_Brand_Assets.zip",
-    );
-    res.status(200).send(zipBuffer);
+    // Upload to GCS
+    const fileName = `GDG-${location}-${Date.now()}.zip`;
+    const bucketFile = storage.bucket(BUCKET_NAME).file(fileName);
+
+    await bucketFile.save(buffer, {
+      metadata: { contentType: "application/zip" },
+      resumable: false,
+    });
+
+    // Generate signed URL
+    const [signedUrl] = await bucketFile.getSignedUrl({
+      action: "read",
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 30,
+    });
+
+    // Send email with link
+    await resend.emails.send({
+      from: "gdg-community-kit@mail.praveent.com",
+      to: email,
+      subject: `Community Kit generated for GDG ${location}`,
+      html: `<p>Hey there.<br/><br/>Community Kit for <strong>GDG ${location}</strong> is generated successfully. Use this <a href="${signedUrl}" target="_blank">link</a> to download (valid for 30 days).<br/><br/>With regards,<br/>Praveen Thirumurugan,<br/>Organiser, GDG Cloud Coimbatore.</p>`,
+    });
+
+    return res.status(200).json({ success: true });
   } catch (error) {
     console.log("Error generating images:", error);
 

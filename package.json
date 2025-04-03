@@ -10,6 +10,8 @@
     "pretty": "prettier --write ."
   },
   "dependencies": {
+    "@google-cloud/storage": "^7.16.0",
+    "@google-cloud/tasks": "^6.0.1",
     "@sparticuz/chromium": "^133.0.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
@@ -18,7 +20,8 @@
     "puppeteer": "^24.5.0",
     "puppeteer-core": "^24.5.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "resend": "^4.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
