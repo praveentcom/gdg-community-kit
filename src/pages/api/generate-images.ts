@@ -99,7 +99,9 @@ export default async function handler(
 
           await page.setContent(html, { waitUntil: "networkidle2" });
 
-          page.setDefaultTimeout(60000);
+          page.setDefaultTimeout(120000);
+
+          await page.evaluate(() => document.fonts.ready);
 
           const buffer = await page.screenshot({ omitBackground: true });
 
