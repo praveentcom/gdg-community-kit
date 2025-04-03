@@ -41,7 +41,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.NEXT_PUBLIC_BASE_URL}/images/base/brand/landing-banners/640x500/${variant}/base_image.png`}
+        src={`${process.env.BASE_URL}/images/base/brand/landing-banners/640x500/${variant}/base_image.png`}
         alt="Brand Logo"
         style={{
           width: "100%",

@@ -9,21 +9,21 @@ export default function generateGoogleSansFontStyles() {
     <style>
         @font-face {
             font-family: 'Google Sans';
-            src: url('${process.env.NEXT_PUBLIC_BASE_URL}${CONFIG.regular}') format('woff2');
+            src: url('${process.env.BASE_URL}${CONFIG.regular}') format('woff2');
             font-weight: 400;
             font-style: normal;
         }
         
         @font-face {
             font-family: 'Google Sans';
-            src: url('${process.env.NEXT_PUBLIC_BASE_URL}${CONFIG.medium}') format('woff2');
+            src: url('${process.env.BASE_URL}${CONFIG.medium}') format('woff2');
             font-weight: 500;
             font-style: normal;
         }
         
         @font-face {
             font-family: 'Google Sans';
-            src: url('${process.env.NEXT_PUBLIC_BASE_URL}${CONFIG.bold}') format('woff2');
+            src: url('${process.env.BASE_URL}${CONFIG.bold}') format('woff2');
             font-weight: 700;
             font-style: normal;
         }

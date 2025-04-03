@@ -1,48 +1,11 @@
-import { useState } from "react";
+import { CommunityKitForm } from "@/components/community-kit-form";
 
-export default function Home() {
-  const [location, setLocation] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async () => {
-    setLoading(true);
-
-    const res = await fetch("/api/accept-request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ location, email: "mail@praveent.com" }),
-    });
-
-    if (!res.ok) {
-      alert("Failed to generate image");
-      setLoading(false);
-      return;
-    } else {
-      alert(
-        "Image generation request accepted. Check your email for the generated images, it might take a few minutes to receive.",
-      );
-    }
-
-    setLoading(false);
-  };
-
+export default function LoginPage() {
   return (
-    <main className="flex flex-col items-center justify-center min-h-screen">
-      <div className="mb-4">
-        <input
-          className="border p-2 rounded mr-2"
-          placeholder="Enter location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <button
-          className="bg-google-blue text-google-gs-white px-4 py-2 rounded"
-          onClick={handleSubmit}
-          disabled={loading}
-        >
-          {loading ? "Generating..." : "Generate Image"}
-        </button>
+    <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
+      <div className="w-full max-w-sm md:max-w-3xl">
+        <CommunityKitForm />
       </div>
-    </main>
+    </div>
   );
 }

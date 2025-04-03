@@ -50,7 +50,23 @@ export default async function handler(
     return;
   }
 
-  const { location, email } = req.body;
+  const { location, email, fullName, communityType } = req.body;
+
+  let communityParsed = "",
+    locationParsed = "";
+  switch (communityType) {
+    case "gdg":
+      communityParsed = "GDG";
+      locationParsed = location;
+      break;
+    case "gdg-cloud":
+      communityParsed = "GDG Cloud";
+      locationParsed = `Cloud ${location}`;
+      break;
+    default:
+      communityParsed = "GDG";
+      locationParsed = location;
+  }
 
   const IMAGE_GENERATORS = [
     ...STACKED_LOGO_VARIANTS,
@@ -93,7 +109,7 @@ export default async function handler(
           const page = await browser.newPage();
 
           const html = imageGen.generator({
-            location,
+            location: locationParsed,
             variant: imageGen.variant,
             dimensions: imageGen.dimensions,
             fontColor: imageGen.fontColor,
@@ -114,7 +130,9 @@ export default async function handler(
           const buffer = await page.screenshot({ omitBackground: true });
 
           zip
-            .folder(`GDG ${location} - Brand Assets/${imageGen.folder}`)
+            .folder(
+              `${communityParsed} ${location} - Brand Assets/${imageGen.folder}`,
+            )
             ?.file(imageGen.name, buffer);
 
           await page.close();
@@ -127,7 +145,7 @@ export default async function handler(
     const buffer = await zip.generateAsync({ type: "nodebuffer" });
 
     // Upload to GCS
-    const fileName = `GDG-${location}-${Date.now()}.zip`;
+    const fileName = `${communityParsed}-${location}-${Date.now()}.zip`;
     const bucketFile = storage.bucket(BUCKET_NAME).file(fileName);
 
     await bucketFile.save(buffer, {
@@ -145,8 +163,8 @@ export default async function handler(
     await resend.emails.send({
       from: "gdg-community-kit@mail.praveent.com",
       to: email,
-      subject: `Community Kit generated for GDG ${location}`,
-      html: `<p>Hey there.<br/><br/>Community Kit for <strong>GDG ${location}</strong> is generated successfully. Use this <a href="${signedUrl}" target="_blank">link</a> to download (valid for 30 days).<br/><br/>With regards,<br/>Praveen Thirumurugan,<br/>Organiser, GDG Cloud Coimbatore.</p>`,
+      subject: `Community Kit generated for ${communityParsed} ${location}`,
+      html: `<p>Hey ${fullName}.<br/><br/>We've generated your Community Kit for <strong>${communityParsed} ${location}</strong>. Use this <a href="${signedUrl}" target="_blank">link</a> to download (valid for 30 days).<br/><br/>♥️ We wish your community to scale heights. Found the tool useful? Leave a star on <a href="https://github.com/praveentcom/gdg-community-kit" target="_blank">GitHub</a>.<br/><br/>Thanks,<br/>Praveen Thirumurugan.</p>`,
     });
 
     return res.status(200).json({ success: true });

@@ -7,9 +7,9 @@ export default async function handler(
 ) {
   if (req.method !== "POST") return res.status(405).end();
 
-  const { location, email } = req.body;
+  const { location, email, fullName, communityType } = req.body;
 
-  if (!location || !email)
+  if (!location || !email || !fullName || !communityType)
     return res.status(400).json({ error: "Missing fields" });
 
   const project = `${process.env.GOOGLE_CLOUD_PROJECT_ID}`;
@@ -30,9 +30,9 @@ export default async function handler(
         headers: {
           "Content-Type": "application/json",
         },
-        body: Buffer.from(JSON.stringify({ location, email })).toString(
-          "base64",
-        ),
+        body: Buffer.from(
+          JSON.stringify({ location, email, fullName, communityType }),
+        ).toString("base64"),
       },
     },
   });
