@@ -13,7 +13,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "gdg.praveent.com",
+        hostname: "gdg-community-kit.praveent.com",
         port: "",
         pathname: "**",
         search: "",

@@ -25,12 +25,12 @@ jobs:
               flock -w 300 200 || { echo "Could not acquire deployment lock after waiting. Exiting."; exit 1; }
 
               echo "Stopping pm2 process (if running)..."
-              if pm2 describe gdg > /dev/null 2>&1; then
-                pm2 stop gdg
+              if pm2 describe gdg-community-kit > /dev/null 2>&1; then
+                pm2 stop gdg-community-kit
               fi
 
               # Change to the deployment directory
-              cd /var/www/gdg || { echo "Deployment directory not found"; exit 1; }
+              cd /var/www/gdg-community-kit || { echo "Deployment directory not found"; exit 1; }
               
               echo "Deleting existing files except node_modules and .env..."
               find . -maxdepth 1 -mindepth 1 ! -name "node_modules" ! -name ".env" -exec rm -rf {} +
@@ -55,9 +55,9 @@ jobs:
               npm run build
 
               echo "Starting (or restarting) pm2 process..."
-              if pm2 describe gdg > /dev/null 2>&1; then
-                pm2 restart gdg
+              if pm2 describe gdg-community-kit > /dev/null 2>&1; then
+                pm2 restart gdg-community-kit
               else
-                pm2 start npm --name "gdg" -- run start
+                pm2 start npm --name "gdg-community-kit" -- run start
               fi
-            ) 200>/tmp/deploy-gdg.lock
+            ) 200>/tmp/deploy-gdg-community-kit.lock

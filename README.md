@@ -6,7 +6,7 @@ Easily generate your community kit for GDG and other developer programs. The rep
 
 #### Steps to generate the Community Kit
 
-1. Head over to https://gdg.praveent.com
+1. Head over to https://gdg-community-kit.praveent.com
 2. Fill in the required organiser and community details and request for the kit.
 3. The community kit will be generated and sent as a hosted link to the email provided.
 

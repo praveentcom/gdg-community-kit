@@ -17,10 +17,10 @@ export default function HomePage() {
           content="Easily generate your community kit for GDG and other developer programs."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gdg.praveent.com" />
+        <meta property="og:url" content="https://gdg-community-kit.praveent.com" />
         <meta
           property="og:image"
-          content="https://gdg.praveent.com/images/illustrations/og.png"
+          content="https://gdg-community-kit.praveent.com/images/illustrations/og.png"
         />
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Community Kit Generator" />
@@ -32,7 +32,7 @@ export default function HomePage() {
         />
         <meta
           name="twitter:image"
-          content="https://gdg.praveent.com/images/illustrations/og.png"
+          content="https://gdg-community-kit.praveent.com/images/illustrations/og.png"
         />
         <meta name="twitter:creator" content="@praveentcom" />
         <link rel="icon" href="/favicon.png" />
