@@ -59,5 +59,6 @@ jobs:
                 pm2 restart gdg-community-kit
               else
                 pm2 start npm --name "gdg-community-kit" -- run start
+                pm2 save
               fi
             ) 200>/tmp/deploy-gdg-community-kit.lock
