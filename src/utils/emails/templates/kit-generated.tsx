@@ -45,8 +45,8 @@ export const EMAIL_KIT_GENERATED_HTML = ({
         <Section style={EMAIL_BOX}>
           <Img
             src={`${process.env.BASE_URL}/favicon.png`}
-            width="24"
-            height="24"
+            width="32"
+            height="32"
             alt="Logo"
           />
           <Hr style={EMAIL_HR} />

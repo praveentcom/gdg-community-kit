@@ -2,15 +2,14 @@ const EMAIL_MAIN = {
   backgroundColor: "#f6f9fc",
   fontFamily:
     '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
-  padding: "4px 16px",
-  borderRadius: "12px",
 };
 
 const EMAIL_CONTAINER = {
   backgroundColor: "#ffffff",
-  margin: "16px auto",
-  padding: "16px 0 32px",
+  margin: "24px auto",
+  padding: "32px 0",
   marginBottom: "64px",
+  borderRadius: "12px",
 };
 
 const EMAIL_BOX = {
