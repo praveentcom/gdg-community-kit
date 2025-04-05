@@ -42,7 +42,7 @@ export function CommunityKitForm({
       regExpForTestKeywords.test(email) ||
       regExpForTestKeywords.test(location);
     if (isTestKeywordPresent) {
-      var confirmIfValid = confirm(
+      const confirmIfValid = confirm(
         "We found that you used test keywords in the form, likely used to test the flow. If the details are valid, please click OK. Otherwise, please click Cancel and enter valid details.",
       );
       if (confirmIfValid === false) {
