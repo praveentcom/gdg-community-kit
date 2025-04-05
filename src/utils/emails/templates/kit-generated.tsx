@@ -38,8 +38,8 @@ export const EMAIL_KIT_GENERATED_HTML = ({
     <Head />
     <Body style={EMAIL_MAIN}>
       <Preview>
-        Wohoo, the kit for {communityName} is generated successfully. Details
-        added inside.
+        Wohoo, the kit for {communityName} is generated successfully. Download the kit{" "}
+        using the attached link. The link will remain valid for 30 days.
       </Preview>
       <Container style={EMAIL_CONTAINER}>
         <Section style={EMAIL_BOX}>
@@ -51,13 +51,16 @@ export const EMAIL_KIT_GENERATED_HTML = ({
           />
           <Hr style={EMAIL_HR} />
           <Text style={EMAIL_PARAGRAPH}>
-            Hey {fullName}, thanks for using the tool to generate the branding
-            assets for {communityName}. The community kit is generated and I
-            hope you&apos;ll love them.
+            Hey {fullName},
           </Text>
           <Text style={EMAIL_PARAGRAPH}>
-            Use the link below to download the kit (the link will remain valid
-            for 30 days). To generate for a different location or to use a
+            Thanks for using the tool to generate the branding{" "}
+            assets for {communityName}. The community kit is generated and I{" "}
+            hope you and your audience will love them.
+          </Text>
+          <Text style={EMAIL_PARAGRAPH}>
+            Use the link below to download the kit (the link will remain valid{" "}
+            for 30 days). To generate for a different location or to use a{" "}
             different image variant, simply request a new kit using the tool.
           </Text>
           <Button style={EMAIL_BUTTON} href={signedUrl}>
@@ -72,8 +75,8 @@ export const EMAIL_KIT_GENERATED_HTML = ({
             >
               star
             </Link>{" "}
-            on GitHub, this will help reach more people and improve the tool. If
-            you&apos;ve any feedback or suggestions, feel free to reach out to
+            on GitHub, this will help reach more people and improve the tool. If{" "}
+            you&apos;ve any feedback or suggestions, feel free to reach out to{" "}
             me on{" "}
             <Link style={EMAIL_ANCHOR} href="https://x.com/praveentcom">
               X
@@ -83,7 +86,7 @@ export const EMAIL_KIT_GENERATED_HTML = ({
           <Text style={EMAIL_PARAGRAPH}>— Praveen Thirumurugan</Text>
           <Hr style={EMAIL_HR} />
           <Text style={EMAIL_FOOTER}>
-            This email was sent to you because you requested a community kit for
+            This email was sent to you because you requested a community kit for{" "}
             {communityName} on {moment(requestDate).format("LLL")}.
           </Text>
         </Section>
@@ -106,7 +109,7 @@ export const EMAIL_KIT_GENERATED_TEXT = ({
   return [
     `Hey ${fullName}`,
     ``,
-    `Thanks for using the tool to generate the branding assets for ${communityName}. The community kit is generated and I hope you'll love them.`,
+    `Thanks for using the tool to generate the branding assets for ${communityName}. The community kit is generated and I hope you and your audience will love them.`,
     ``,
     `Use the link below to download the kit (the link will remain valid for 30 days). To generate for a different location or to use a different image variant, simply request a new kit using the tool.`,
     ``,
