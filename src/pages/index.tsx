@@ -17,7 +17,10 @@ export default function HomePage() {
           content="Easily generate your community kit for GDG and other developer programs."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gdg-community-kit.praveent.com" />
+        <meta
+          property="og:url"
+          content="https://gdg-community-kit.praveent.com"
+        />
         <meta
           property="og:image"
           content="https://gdg-community-kit.praveent.com/images/illustrations/og.png"

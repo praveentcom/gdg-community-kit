@@ -36,6 +36,23 @@ export function CommunityKitForm({
     const communityType = (e.target as HTMLFormElement).communityType.value;
     const token = (e.target as HTMLFormElement)["cf-turnstile-response"].value;
 
+    const regExpForTestKeywords = /(test|example|demo|sample|check)/i;
+    const isTestKeywordPresent =
+      regExpForTestKeywords.test(fullName) ||
+      regExpForTestKeywords.test(email) ||
+      regExpForTestKeywords.test(location);
+    if (isTestKeywordPresent) {
+      var confirmIfValid = confirm(
+        "We found that you used test keywords in the form, likely used to test the flow. If the details are valid, please click OK. Otherwise, please click Cancel and enter valid details.",
+      );
+      if (confirmIfValid === false) {
+        toast.info(
+          "Thanks for your feedback. Please enter valid details and submit again.",
+        );
+        return;
+      }
+    }
+
     if (turnstileStatus !== "success" || !token) {
       toast.warning("Please verify the security check");
       return;
@@ -97,17 +114,24 @@ export function CommunityKitForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
-        <CardContent className="grid p-0 md:grid-cols-2">
+        <CardContent className="grid p-0">
           <form className="p-6 md:p-8" onSubmit={onSubmit}>
             <div className="flex flex-col gap-8">
-              <div className="flex flex-col items-center text-center">
-                <h1 className="text-xl font-bold">Howdy, organiser!</h1>
-                <p className="text-md text-muted-foreground text-balance">
-                  Let&apos;s generate your community kit
-                </p>
+              <div className="flex flex-row gap-3 items-center">
+                <Card className="w-12 h-8 items-center justify-center">
+                  <img src="/favicon.png" alt="GDG Logo" className="w-8 h-8" />
+                </Card>
+                <div className="flex flex-col text-center h-min">
+                  <h1 className="text-lg font-bold w-max">
+                    Howdy, organiser 👋🏼
+                  </h1>
+                  <p className="text-sm text-muted-foreground text-balance w-max">
+                    Let&apos;s generate your community kit
+                  </p>
+                </div>
               </div>
-              <div className="grid gap-6">
-                <div className="grid gap-1.5">
+              <div className="grid gap-6 md:grid-cols-2">
+                <div className="grid gap-1.5 h-min">
                   <Label htmlFor="fullName">Full Name</Label>
                   <Input
                     id="fullName"
@@ -117,7 +141,7 @@ export function CommunityKitForm({
                     required
                   />
                 </div>
-                <div className="grid gap-1.5">
+                <div className="grid gap-1.5 h-min">
                   <Label htmlFor="email">Organiser Email</Label>
                   <Input
                     id="email"
@@ -127,8 +151,8 @@ export function CommunityKitForm({
                     required
                   />
                 </div>
-                <div className="grid gap-1.5">
-                  <Label htmlFor="communityType">Community Type</Label>
+                <div className="grid gap-1.5 h-min">
+                  <Label htmlFor="communityType">Program Type</Label>
                   <Select defaultValue="gdg" name="communityType">
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select Community Type" />
@@ -144,7 +168,7 @@ export function CommunityKitForm({
                     </SelectContent>
                   </Select>
                 </div>
-                <div className="grid gap-1.5">
+                <div className="grid gap-1.5 h-min">
                   <Label htmlFor="location">Community Location</Label>
                   <Input
                     id="location"
@@ -153,84 +177,40 @@ export function CommunityKitForm({
                     placeholder="New Delhi"
                     required
                   />
-                  <Label
-                    className="text-xs font-normal text-muted-foreground"
-                    htmlFor="location"
-                  >
-                    Only the location name, e.g. New Delhi, London, etc.
-                    Don&apos;t add GDG before the location name.
-                  </Label>
                 </div>
-                <div className="grid">
-                  <Turnstile
-                    siteKey={
-                      process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!
-                    }
-                    retry="auto"
-                    theme="light"
-                    size="normal"
-                    refreshExpired="auto"
-                    sandbox={process.env.NODE_ENV === "development"}
-                    onError={() => {
-                      setTurnstileStatus("error");
-                      toast.error("Security check failed. Please try again.");
-                    }}
-                    onExpire={() => {
-                      setTurnstileStatus("expired");
-                      toast.error(
-                        "Security check expired. Please verify again.",
-                      );
-                    }}
-                    onLoad={() => {
-                      setTurnstileStatus("required");
-                    }}
-                    onVerify={() => {
-                      setTurnstileStatus("success");
-                    }}
-                    className="w-full"
-                  />
-                </div>
+              </div>
+              <div className="grid gap-0 md:w-max">
+                <Turnstile
+                  siteKey={
+                    process.env.NEXT_PUBLIC_CLOUDFLARE_TURNSTILE_SITE_KEY!
+                  }
+                  retry="auto"
+                  theme="light"
+                  refreshExpired="auto"
+                  sandbox={process.env.NODE_ENV === "development"}
+                  onError={() => {
+                    setTurnstileStatus("error");
+                    toast.error("Security check failed. Please try again.");
+                  }}
+                  onExpire={() => {
+                    setTurnstileStatus("expired");
+                    toast.error("Security check expired. Please verify again.");
+                  }}
+                  onLoad={() => {
+                    setTurnstileStatus("required");
+                  }}
+                  onVerify={() => {
+                    setTurnstileStatus("success");
+                  }}
+                  className="w-full"
+                />
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? <Loader2 className="animate-spin" /> : null}
                   {isLoading ? "Just a moment..." : "Generate"}
                 </Button>
               </div>
-              <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
-                <span className="bg-card text-muted-foreground relative z-10 px-2">
-                  Have praises or suggestions?
-                </span>
-              </div>
-              <div className="grid gap-2">
-                <div className="text-center text-sm">
-                  Found the tool useful?{" "}
-                  <a
-                    href="https://github.com/praveentcom/gdg-community-kit"
-                    className="underline underline-offset-4"
-                    target="_blank"
-                  >
-                    Give a star on GitHub
-                  </a>
-                </div>
-                <div className="text-center text-sm">
-                  Not working as expected?{" "}
-                  <a
-                    href="mailto:mail@praveent.com"
-                    className="underline underline-offset-4"
-                    target="_blank"
-                  >
-                    Report an issue
-                  </a>
-                </div>
-              </div>
             </div>
           </form>
-          <div className="bg-muted relative hidden md:block">
-            <img
-              src="/images/illustrations/gdg_sticker.png"
-              alt="Image"
-              className="absolute inset-0 h-full w-full object-cover grayscale"
-            />
-          </div>
         </CardContent>
       </Card>
       <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
@@ -238,8 +218,17 @@ export function CommunityKitForm({
         team for guidance on how to use this community kit. Feel free to tweak
         it based on your event needs and plans.<br></br>
         <br></br>
-        The kit might not reflect the latest updates.<br></br>
-        Last updated on 1st April 2025.
+        Last updated on 1st April 2025.<br></br>
+        <div className="text-center text-xs">
+          Found the tool useful?{" "}
+          <a
+            href="https://github.com/praveentcom/gdg-community-kit"
+            className="underline underline-offset-4"
+            target="_blank"
+          >
+            Give a star on GitHub
+          </a>
+        </div>
       </div>
     </div>
   );
