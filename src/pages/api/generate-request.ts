@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getTasksClient } from "@/utils/google/tasks";
 import emailValidator from "email-validator";
+import prisma from "@/utils/db";
 
 import { validateTurnstileToken } from "next-turnstile";
 import { v4 } from "uuid";
@@ -64,6 +65,18 @@ export default async function handler(
 
   const parent = tasksClient.queuePath(project, locationRegion, queue);
 
+  const newRequest = await prisma.kitRequest.create({
+    data: {
+      location,
+      email,
+      fullName,
+      communityType,
+      customImageUrl,
+    },
+  });
+
+  const requestId = newRequest.id;
+
   await tasksClient.createTask({
     parent,
     task: {
@@ -75,16 +88,12 @@ export default async function handler(
         },
         body: Buffer.from(
           JSON.stringify({
-            location,
-            email,
-            fullName,
-            communityType,
-            customImageUrl,
+            requestId,
           }),
         ).toString("base64"),
       },
     },
   });
 
-  return res.status(200).json({ success: true });
+  return res.status(200).json({ success: true, requestId });
 }

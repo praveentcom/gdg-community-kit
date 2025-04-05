@@ -1,0 +1,27 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum RequestStatus {
+  INITIATED
+  PROCESSING
+  CREATED
+  FAILED
+}
+
+model KitRequest {
+  id             Int           @id @default(autoincrement())
+  location       String
+  email          String
+  fullName       String
+  communityType  String
+  customImageUrl String
+  status         RequestStatus @default(INITIATED)
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @default(now())
+}

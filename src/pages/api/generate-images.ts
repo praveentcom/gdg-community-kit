@@ -44,6 +44,14 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 import { getStorageClient } from "@/utils/google/storage";
 import { EnumImageVariant } from "@/types/Image";
+import updateKitRequestStatus from "@/utils/common/kit-request/updateKitRequestStatus";
+import { RequestStatus } from "@prisma/client";
+import {
+  EMAIL_KIT_GENERATED_HTML,
+  EMAIL_KIT_GENERATED_TEXT,
+} from "@/utils/emails/templates/kit-generated";
+import getKitRequestDetails from "@/utils/common/kit-request/getKitRequestDetails";
+import { render } from "@react-email/render";
 const storage = getStorageClient();
 
 const BUCKET_NAME = `${process.env.GOOGLE_CLOUD_STORAGE_BUCKET}`;
@@ -54,67 +62,77 @@ export default async function handler(
 ) {
   if (req.method !== "POST") return res.status(405).end();
 
-  const { location, email, fullName, communityType, customImageUrl } = req.body;
+  const { requestId } = req.body;
 
-  let communityParsed = "",
-    locationParsed = "";
-  switch (communityType) {
-    case "gdg":
-      communityParsed = "GDG";
-      locationParsed = location;
-      break;
-    case "gdg-cloud":
-      communityParsed = "GDG Cloud";
-      locationParsed = `Cloud ${location}`;
-      break;
-    default:
-      communityParsed = "GDG";
-      locationParsed = location;
+  if (!requestId) {
+    return res.status(400).json({ error: "Missing requestId" });
   }
-
-  const IMAGE_GENERATORS = [
-    ...STACKED_LOGO_VARIANTS,
-    ...HORIZONTAL_LOGO_VARIANTS,
-    ...LANDING_BANNER_640x500,
-    ...LANDING_BANNER_1440x499,
-    ...LANDING_BANNER_1440x499_SKELETON,
-    ...LANDING_BANNER_1440x499_CUSTOM_IMAGE,
-    ...LANDING_BANNER_2500x471,
-    ...LANDING_BANNER_2500x471_SKELETON,
-    ...LANDING_BANNER_2500x471_CUSTOM_IMAGE,
-    ...BEVY_BANNER,
-    ...BEVY_BANNER_SKELETON,
-    ...BEVY_BANNER_CUSTOM_IMAGE,
-    ...BLOG_COVER_1024x512,
-    ...BLOG_COVER_2500x744,
-    ...LINKEDIN_BANNER,
-    ...LINKEDIN_BANNER_SKELETON,
-    ...LINKEDIN_BANNER_CUSTOM_IMAGE,
-    ...TWITTER_BANNER,
-    ...TWITTER_BANNER_SKELETON,
-    ...TWITTER_BANNER_CUSTOM_IMAGE,
-    ...EMAIL_HEADER,
-    ...WEBSITE_BANNER_640x500,
-    ...WEBSITE_BANNER_1440x499,
-    ...WEBSITE_BANNER_1440x499_SKELETON,
-    ...WEBSITE_BANNER_1440x499_CUSTOM_IMAGE,
-    ...WEBSITE_BANNER_2500x471,
-    ...WEBSITE_BANNER_2500x471_SKELETON,
-    ...WEBSITE_BANNER_2500x471_CUSTOM_IMAGE,
-  ];
-
-  const zip = new JSZip();
-
-  const browser = await getPuppeteerBrowser();
-  if (!browser) {
-    res.status(500).json({ error: "Failed to launch browser" });
-    return;
-  }
-
-  const concurrencyLimit = 2;
-  const limit = pLimit(concurrencyLimit);
 
   try {
+    await updateKitRequestStatus(requestId, RequestStatus.PROCESSING);
+
+    const requestDetails = await getKitRequestDetails(requestId);
+
+    const { location, email, fullName, communityType, customImageUrl } =
+      requestDetails;
+
+    let communityParsed = "",
+      locationParsed = "";
+    switch (communityType) {
+      case "gdg":
+        communityParsed = "GDG";
+        locationParsed = location;
+        break;
+      case "gdg-cloud":
+        communityParsed = "GDG Cloud";
+        locationParsed = `Cloud ${location}`;
+        break;
+      default:
+        communityParsed = "GDG";
+        locationParsed = location;
+    }
+
+    const IMAGE_GENERATORS = [
+      ...STACKED_LOGO_VARIANTS,
+      ...HORIZONTAL_LOGO_VARIANTS,
+      ...LANDING_BANNER_640x500,
+      ...LANDING_BANNER_1440x499,
+      ...LANDING_BANNER_1440x499_SKELETON,
+      ...LANDING_BANNER_1440x499_CUSTOM_IMAGE,
+      ...LANDING_BANNER_2500x471,
+      ...LANDING_BANNER_2500x471_SKELETON,
+      ...LANDING_BANNER_2500x471_CUSTOM_IMAGE,
+      ...BEVY_BANNER,
+      ...BEVY_BANNER_SKELETON,
+      ...BEVY_BANNER_CUSTOM_IMAGE,
+      ...BLOG_COVER_1024x512,
+      ...BLOG_COVER_2500x744,
+      ...LINKEDIN_BANNER,
+      ...LINKEDIN_BANNER_SKELETON,
+      ...LINKEDIN_BANNER_CUSTOM_IMAGE,
+      ...TWITTER_BANNER,
+      ...TWITTER_BANNER_SKELETON,
+      ...TWITTER_BANNER_CUSTOM_IMAGE,
+      ...EMAIL_HEADER,
+      ...WEBSITE_BANNER_640x500,
+      ...WEBSITE_BANNER_1440x499,
+      ...WEBSITE_BANNER_1440x499_SKELETON,
+      ...WEBSITE_BANNER_1440x499_CUSTOM_IMAGE,
+      ...WEBSITE_BANNER_2500x471,
+      ...WEBSITE_BANNER_2500x471_SKELETON,
+      ...WEBSITE_BANNER_2500x471_CUSTOM_IMAGE,
+    ];
+
+    const zip = new JSZip();
+
+    const browser = await getPuppeteerBrowser();
+    if (!browser) {
+      throw new Error("Failed to launch browser");
+    }
+
+    const concurrencyLimit = 2;
+    const limit = pLimit(concurrencyLimit);
+
     await Promise.all(
       IMAGE_GENERATORS.map((imageGen) =>
         limit(async () => {
@@ -164,40 +182,52 @@ export default async function handler(
 
     const buffer = await zip.generateAsync({ type: "nodebuffer" });
 
-    // Upload to GCS
     const fileName = `${communityParsed}-${location}-${Date.now()}.zip`;
     const bucketFile = storage.bucket(BUCKET_NAME).file(fileName);
-
     await bucketFile.save(buffer, {
       metadata: { contentType: "application/zip" },
       resumable: false,
     });
 
-    // Generate signed URL
     const [signedUrl] = await bucketFile.getSignedUrl({
       action: "read",
       expires: Date.now() + 1000 * 60 * 60 * 24 * 30,
     });
 
-    // Send email with link
+    const emailHtml = await render(
+        EMAIL_KIT_GENERATED_HTML({
+          fullName,
+          communityName: `${communityParsed} ${location}`,
+          signedUrl,
+          requestDate: requestDetails.createdAt,
+        }),
+        {
+          pretty: true,
+        },
+      ),
+      emailText = EMAIL_KIT_GENERATED_TEXT({
+        fullName,
+        communityName: `${communityParsed} ${location}`,
+        signedUrl,
+        requestDate: requestDetails.createdAt,
+      });
+
     await resend.emails.send({
       from: "GDG Community Kit <gdg-community-kit@mail.praveent.com>",
       to: email,
-      subject: `Community Kit generated for ${communityParsed} ${location}`,
-      html: `<p>Hey ${`${fullName}`.split(" ")[0]} 👋🏼<br/><br/>We've successfully generated branding assets for <strong>${communityParsed} ${location}</strong> community. Use this <a href="${signedUrl}" target="_blank">hosted link</a> to download the kit (the link will remain valid for 30 days). We wish you and your community to scale greater heights.<br/><br/>Thanks with regards,<br/>Praveen Thirumurugan.</p>`,
+      subject: `Community Kit for ${communityParsed} ${location}`,
+      text: emailText,
+      html: emailHtml,
     });
+
+    await updateKitRequestStatus(requestId, RequestStatus.CREATED);
 
     return res.status(200).json({ success: true });
   } catch (error) {
-    console.log("Error generating images:", error);
+    await updateKitRequestStatus(requestId, RequestStatus.FAILED);
 
-    await browser.close();
-    res.status(500).json({ error: "Internal Server Error" });
+    console.error("Error generating images:", error);
+
+    res.status(500).json({ error: "Internal Server Error", details: error });
   }
 }
-
-export const config = {
-  api: {
-    responseLimit: false,
-  },
-};

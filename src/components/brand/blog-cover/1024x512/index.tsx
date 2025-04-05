@@ -28,14 +28,12 @@ function Element({
   dimensions,
   fontColor,
   imageVariant,
-  customImageUrl,
 }: {
   location: string;
   colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
   imageVariant: EnumImageVariant;
-  customImageUrl: string;
 }) {
   const { positions, font } = CONFIG;
 
@@ -94,14 +92,12 @@ export default function getBrandBlogCover1024x512({
   dimensions,
   fontColor,
   imageVariant,
-  customImageUrl,
 }: {
   location: string;
   colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
   imageVariant: EnumImageVariant;
-  customImageUrl: string;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
@@ -110,7 +106,6 @@ export default function getBrandBlogCover1024x512({
       dimensions={dimensions}
       fontColor={fontColor}
       imageVariant={imageVariant}
-      customImageUrl={customImageUrl}
     />,
   );
 
