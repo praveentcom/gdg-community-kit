@@ -68,15 +68,17 @@ export const EMAIL_KIT_GENERATED_HTML = ({
           </Button>
           <Hr style={EMAIL_HR} />
           <Text style={EMAIL_PARAGRAPH}>
-            If you loved the tool, consider giving a{" "}
+            Loved the tool? Consider giving a{" "}
             <Link
               style={EMAIL_ANCHOR}
               href="https://github.com/praveentcom/gdg-community-kit"
             >
               star
             </Link>{" "}
-            on GitHub, this will help reach more people and improve the tool. If{" "}
-            you&apos;ve any feedback or suggestions, feel free to reach out to{" "}
+            on GitHub, this will help reach more people and improve the tool.
+          </Text>
+          <Text style={EMAIL_PARAGRAPH}>
+            If you&apos;ve any feedback or suggestions, feel free to reach out to{" "}
             me on{" "}
             <Link style={EMAIL_ANCHOR} href="https://x.com/praveentcom">
               X
@@ -115,7 +117,8 @@ export const EMAIL_KIT_GENERATED_TEXT = ({
     ``,
     `Download Community Kit: ${signedUrl}`,
     ``,
-    `If you loved the tool, consider giving a star on GitHub, this will help reach more people and improve the tool. If you've any feedback or suggestions, feel free to reach out to me on X or simply reply to this email.`,
+    `Loved the tool? Consider giving a star on GitHub, this will help reach more people and improve the tool.`,
+    `If you've any feedback or suggestions, feel free to reach out to me on X or simply reply to this email.`,
     `— Praveen Thirumurugan`,
     ``,
     `This email was sent to you because you requested a community kit for ${communityName} on ${moment(requestDate).format("LLL")}.`,
