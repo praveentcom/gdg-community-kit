@@ -2,18 +2,19 @@ const EMAIL_MAIN = {
   backgroundColor: "#f6f9fc",
   fontFamily:
     '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif',
+    padding: "20px 0"
 };
 
 const EMAIL_CONTAINER = {
   backgroundColor: "#ffffff",
-  margin: "24px auto",
-  padding: "32px 0",
+  margin: "0 auto",
+  padding: "24px 0",
   marginBottom: "64px",
   borderRadius: "12px",
 };
 
 const EMAIL_BOX = {
-  padding: "0 48px",
+  padding: "0 40px",
 };
 
 const EMAIL_HR = {
