@@ -29,12 +29,21 @@ import {
   WEBSITE_BANNER_1440x499_SKELETON,
   WEBSITE_BANNER_2500x471,
   WEBSITE_BANNER_2500x471_SKELETON,
+  BEVY_BANNER_SKELETON,
+  BEVY_BANNER_CUSTOM_IMAGE,
+  LANDING_BANNER_1440x499_CUSTOM_IMAGE,
+  LANDING_BANNER_2500x471_CUSTOM_IMAGE,
+  LINKEDIN_BANNER_CUSTOM_IMAGE,
+  TWITTER_BANNER_CUSTOM_IMAGE,
+  WEBSITE_BANNER_2500x471_CUSTOM_IMAGE,
+  WEBSITE_BANNER_1440x499_CUSTOM_IMAGE,
 } from "@/utils/common/generationConfigs";
 
 import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 import { getStorageClient } from "@/utils/google/storage";
+import { EnumImageVariant } from "@/types/Image";
 const storage = getStorageClient();
 
 const BUCKET_NAME = `${process.env.GOOGLE_CLOUD_STORAGE_BUCKET}`;
@@ -43,14 +52,9 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if (req.method !== "POST") {
-    console.log("request method not allowed", req.method);
-    console.log("request", req);
-    res.status(405).end();
-    return;
-  }
+  if (req.method !== "POST") return res.status(405).end();
 
-  const { location, email, fullName, communityType } = req.body;
+  const { location, email, fullName, communityType, customImageUrl } = req.body;
 
   let communityParsed = "",
     locationParsed = "";
@@ -74,21 +78,29 @@ export default async function handler(
     ...LANDING_BANNER_640x500,
     ...LANDING_BANNER_1440x499,
     ...LANDING_BANNER_1440x499_SKELETON,
+    ...LANDING_BANNER_1440x499_CUSTOM_IMAGE,
     ...LANDING_BANNER_2500x471,
     ...LANDING_BANNER_2500x471_SKELETON,
+    ...LANDING_BANNER_2500x471_CUSTOM_IMAGE,
     ...BEVY_BANNER,
+    ...BEVY_BANNER_SKELETON,
+    ...BEVY_BANNER_CUSTOM_IMAGE,
     ...BLOG_COVER_1024x512,
     ...BLOG_COVER_2500x744,
     ...LINKEDIN_BANNER,
     ...LINKEDIN_BANNER_SKELETON,
+    ...LINKEDIN_BANNER_CUSTOM_IMAGE,
     ...TWITTER_BANNER,
     ...TWITTER_BANNER_SKELETON,
+    ...TWITTER_BANNER_CUSTOM_IMAGE,
     ...EMAIL_HEADER,
     ...WEBSITE_BANNER_640x500,
     ...WEBSITE_BANNER_1440x499,
     ...WEBSITE_BANNER_1440x499_SKELETON,
+    ...WEBSITE_BANNER_1440x499_CUSTOM_IMAGE,
     ...WEBSITE_BANNER_2500x471,
     ...WEBSITE_BANNER_2500x471_SKELETON,
+    ...WEBSITE_BANNER_2500x471_CUSTOM_IMAGE,
   ];
 
   const zip = new JSZip();
@@ -106,22 +118,30 @@ export default async function handler(
     await Promise.all(
       IMAGE_GENERATORS.map((imageGen) =>
         limit(async () => {
-          const page = await browser.newPage();
+          if (
+            imageGen.imageVariant === EnumImageVariant.CUSTOM_IMAGE_URL &&
+            !customImageUrl
+          ) {
+            return;
+          }
 
           const html = imageGen.generator({
             location: locationParsed,
-            variant: imageGen.variant,
+            colorVariant: imageGen.colorVariant,
             dimensions: imageGen.dimensions,
             fontColor: imageGen.fontColor,
-            bgImage: imageGen.bgImage ?? null,
+            imageVariant: imageGen.imageVariant,
+            customImageUrl: customImageUrl || "",
           });
+
+          const page = await browser.newPage();
 
           await page.setViewport({
             ...imageGen.dimensions,
             deviceScaleFactor: 1,
           });
 
-          await page.setContent(html, { waitUntil: "networkidle2" });
+          await page.setContent(html, { waitUntil: "networkidle0" });
 
           page.setDefaultTimeout(120000);
 

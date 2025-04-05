@@ -1,5 +1,9 @@
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
-import { ImageDimensions } from "@/types/Image";
+import {
+  ImageDimensions,
+  EnumImageVariant,
+  getImageVariantSuffix,
+} from "@/types/Image";
 import ReactDOMServer from "react-dom/server";
 
 const CONFIG = {
@@ -20,14 +24,18 @@ const CONFIG = {
 
 function Element({
   location,
-  variant,
+  colorVariant,
   dimensions,
   fontColor,
+  imageVariant,
+  customImageUrl,
 }: {
   location: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
+  imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const { positions, font } = CONFIG;
 
@@ -40,7 +48,7 @@ function Element({
       }}
     >
       <img
-        src={`${process.env.BASE_URL}/images/base/brand/logo/horizontal/${variant}/base_image.png`}
+        src={`${process.env.BASE_URL}/images/base/brand/logo/horizontal/${colorVariant}/base_image${getImageVariantSuffix(imageVariant)}.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -82,21 +90,27 @@ function Element({
 
 export default function getBrandLogoHorizontal({
   location,
-  variant,
+  colorVariant,
   dimensions,
   fontColor,
+  imageVariant,
+  customImageUrl,
 }: {
   location: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
+  imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
       location={location}
-      variant={variant}
+      colorVariant={colorVariant}
       dimensions={dimensions}
       fontColor={fontColor}
+      imageVariant={imageVariant}
+      customImageUrl={customImageUrl}
     />,
   );
 

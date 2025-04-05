@@ -17,6 +17,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { Turnstile } from "next-turnstile";
+import { CldUploadWidget } from "next-cloudinary";
 
 export function CommunityKitForm({
   className,
@@ -26,6 +27,7 @@ export function CommunityKitForm({
   const [turnstileStatus, setTurnstileStatus] = useState<
     "success" | "error" | "expired" | "required"
   >("required");
+  const [customImageUrl, setCustomImageUrl] = useState<string | null>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -82,13 +84,18 @@ export function CommunityKitForm({
     setIsLoading(true);
 
     await axios
-      .post("/api/accept-request", {
-        location,
-        fullName,
-        email,
-        communityType,
-        token,
-      })
+      .post(
+        process.env.NEXT_PUBLIC_GENERATE_REQUEST_API_URL ??
+          `/api/generate-request`,
+        {
+          location,
+          fullName,
+          email,
+          communityType,
+          token,
+          customImageUrl,
+        },
+      )
       .then((res) => {
         if (res.status === 200) {
           toast.success(
@@ -115,10 +122,17 @@ export function CommunityKitForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0">
-					<picture>
-						<source media="(min-width: 768px)" srcSet="/images/illustrations/kit_banner.png" />
-						<img src="/images/illustrations/kit_banner_large.png" alt="Community Kit" className="w-full h-auto" />
-					</picture>
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcSet="/images/illustrations/kit_banner.png"
+            />
+            <img
+              src="/images/illustrations/kit_banner_large.png"
+              alt="Community Kit"
+              className="w-full h-auto"
+            />
+          </picture>
           <form className="p-6 md:p-8" onSubmit={onSubmit}>
             <div className="flex flex-col gap-8">
               <div className="grid gap-6 md:grid-cols-2">
@@ -168,6 +182,65 @@ export function CommunityKitForm({
                     placeholder="New Delhi"
                     required
                   />
+                </div>
+                <div className="grid gap-1.5">
+                  <Label htmlFor="imageUpload">Event Photo (Optional)</Label>
+                  <CldUploadWidget
+                    uploadPreset="gdg-community-kit"
+                    onSuccess={(result) => {
+                      if (
+                        result.event === "success" &&
+                        typeof result.info === "object" &&
+                        "url" in result.info
+                      ) {
+                        const customImageUrl = result.info.url;
+                        setCustomImageUrl(customImageUrl);
+
+                        toast.success("Image uploaded successfully");
+                      }
+                    }}
+                    onAbort={() => {
+                      toast.error("Image upload aborted");
+                    }}
+                    onError={() => {
+                      toast.error("Image upload failed");
+                    }}
+                    options={{
+                      maxFiles: 1,
+                      maxFileSize: 10 * 1024 * 1024,
+                      clientAllowedFormats: ["png", "jpg", "jpeg"],
+                      sources: ["local", "url"],
+                      showAdvancedOptions: false,
+                      cropping: true,
+                      multiple: false,
+                      defaultSource: "local",
+                      croppingAspectRatio: 16 / 9,
+                    }}
+                  >
+                    {({ open }) => (
+                      <div
+                        className="rounded-md border-dashed border border-muted-foreground/25 hover:border-muted-foreground/50 flex items-center justify-center p-4 cursor-pointer hover:bg-accent hover:text-accent-foreground"
+                        onClick={() => open()}
+                      >
+                        {customImageUrl ? (
+                          <img
+                            src={customImageUrl}
+                            alt="Uploaded"
+                            className="w-full h-auto rounded-md"
+                          />
+                        ) : (
+                          <p className="text-muted-foreground text-sm">
+                            Click to upload an image
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </CldUploadWidget>
+                  <Label className="text-xs text-muted-foreground font-normal">
+                    This image will be used within the branding kit images (like
+                    the cover image you see in this page with the event photo
+                    inside).
+                  </Label>
                 </div>
               </div>
               <div className="grid gap-0 md:w-max">

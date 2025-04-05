@@ -14,7 +14,8 @@ export default async function handler(
 ) {
   if (req.method !== "POST") return res.status(405).end();
 
-  const { location, email, fullName, communityType, token } = req.body;
+  const { location, email, fullName, communityType, token, customImageUrl } =
+    req.body;
 
   if (!location || !email || !fullName || !communityType || !token)
     return res.status(400).json({ error: "Missing fields" });
@@ -46,7 +47,7 @@ export default async function handler(
     return res.status(429).json({ error: "Daily request limit exceeded" });
   }
 
-  const cacheKey = `accept-request:${email}`;
+  const cacheKey = `generate-request:${email}`;
   const isDuplicate = await redis.get(cacheKey);
   if (isDuplicate) {
     return res.status(429).json({ error: "Duplicate request detected" });
@@ -73,7 +74,13 @@ export default async function handler(
           "Content-Type": "application/json",
         },
         body: Buffer.from(
-          JSON.stringify({ location, email, fullName, communityType }),
+          JSON.stringify({
+            location,
+            email,
+            fullName,
+            communityType,
+            customImageUrl,
+          }),
         ).toString("base64"),
       },
     },

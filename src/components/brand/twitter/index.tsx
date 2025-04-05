@@ -1,5 +1,9 @@
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
-import { ImageDimensions } from "@/types/Image";
+import {
+  ImageDimensions,
+  EnumImageVariant,
+  getImageVariantSuffix,
+} from "@/types/Image";
 import ReactDOMServer from "react-dom/server";
 
 const CONFIG = {
@@ -8,6 +12,12 @@ const CONFIG = {
       top: 356,
       left: 1215,
       rightPadding: 25,
+    },
+    customImage: {
+      top: 40,
+      left: 456,
+      width: 538,
+      height: 396,
     },
   },
   font: {
@@ -20,16 +30,18 @@ const CONFIG = {
 
 function Element({
   location,
-  variant,
+  colorVariant,
   dimensions,
   fontColor,
-  bgImage,
+  imageVariant,
+  customImageUrl,
 }: {
   location: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
+  imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const { positions, font } = CONFIG;
 
@@ -41,8 +53,24 @@ function Element({
         position: "relative",
       }}
     >
+      {customImageUrl &&
+        imageVariant === EnumImageVariant.CUSTOM_IMAGE_URL &&
+        CONFIG.positions.customImage && (
+          <img
+            src={customImageUrl}
+            alt="Custom Image"
+            style={{
+              width: `${CONFIG.positions.customImage.width}px`,
+              height: `${CONFIG.positions.customImage.height}px`,
+              objectFit: "cover",
+              position: "absolute",
+              top: `${CONFIG.positions.customImage.top}px`,
+              left: `${CONFIG.positions.customImage.left}px`,
+            }}
+          />
+        )}
       <img
-        src={`${process.env.BASE_URL}/images/base/brand/twitter/${variant}/base_image${bgImage ? "_transparent" : ""}.png`}
+        src={`${process.env.BASE_URL}/images/base/brand/twitter/${colorVariant}/base_image${getImageVariantSuffix(imageVariant)}.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -84,24 +112,27 @@ function Element({
 
 export default function getBrandTwitterBanner({
   location,
-  variant,
+  colorVariant,
   dimensions,
   fontColor,
-  bgImage = null,
+  imageVariant,
+  customImageUrl,
 }: {
   location: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
+  imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
       location={location}
-      variant={variant}
+      colorVariant={colorVariant}
       dimensions={dimensions}
       fontColor={fontColor}
-      bgImage={bgImage}
+      imageVariant={imageVariant}
+      customImageUrl={customImageUrl}
     />,
   );
 

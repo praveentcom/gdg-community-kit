@@ -1,5 +1,9 @@
 import { EnumColorHex, EnumColorVariant } from "@/types/Color";
-import { ImageDimensions } from "@/types/Image";
+import {
+  ImageDimensions,
+  EnumImageVariant,
+  getImageVariantSuffix,
+} from "@/types/Image";
 import ReactDOMServer from "react-dom/server";
 
 const CONFIG = {
@@ -9,9 +13,15 @@ const CONFIG = {
       left: 668,
       rightPadding: 25,
     },
+    customImage: {
+      top: 55,
+      left: 1300,
+      width: 1146,
+      height: 354,
+    },
   },
   font: {
-    size: 40,
+    size: 42,
     lineHeight: 1.2,
     family: "Google Sans",
     weight: "normal",
@@ -20,16 +30,18 @@ const CONFIG = {
 
 function Element({
   location,
-  variant,
+  colorVariant,
   dimensions,
   fontColor,
-  bgImage = null,
+  imageVariant,
+  customImageUrl,
 }: {
   location: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
+  imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const { positions, font } = CONFIG;
 
@@ -41,8 +53,24 @@ function Element({
         position: "relative",
       }}
     >
+      {customImageUrl &&
+        imageVariant === EnumImageVariant.CUSTOM_IMAGE_URL &&
+        CONFIG.positions.customImage && (
+          <img
+            src={customImageUrl}
+            alt="Custom Image"
+            style={{
+              width: `${CONFIG.positions.customImage.width}px`,
+              height: `${CONFIG.positions.customImage.height}px`,
+              objectFit: "cover",
+              position: "absolute",
+              top: `${CONFIG.positions.customImage.top}px`,
+              left: `${CONFIG.positions.customImage.left}px`,
+            }}
+          />
+        )}
       <img
-        src={`${process.env.BASE_URL}/images/base/brand/website-banners/2500x471/${variant}/base_image${bgImage ? "_transparent" : ""}.png`}
+        src={`${process.env.BASE_URL}/images/base/brand/website-banners/2500x471/${colorVariant}/base_image${getImageVariantSuffix(imageVariant)}.png`}
         alt="Brand Logo"
         style={{
           width: "100%",
@@ -84,24 +112,27 @@ function Element({
 
 export default function getBrandWebsiteBanner2500x471({
   location,
-  variant,
+  colorVariant,
   dimensions,
   fontColor,
-  bgImage = null,
+  imageVariant,
+  customImageUrl,
 }: {
   location: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
+  imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
       location={location}
-      variant={variant}
+      colorVariant={colorVariant}
       dimensions={dimensions}
       fontColor={fontColor}
-      bgImage={bgImage}
+      imageVariant={imageVariant}
+      customImageUrl={customImageUrl}
     />,
   );
 

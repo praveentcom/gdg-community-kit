@@ -1,25 +1,27 @@
 import { EnumColorHex, EnumColorVariant } from "./Color";
-import { ImageDimensions } from "./Image";
+import { ImageDimensions, EnumImageVariant } from "./Image";
 
 export type ImageGenerationConfig = {
   id: string;
   name: string;
   folder: string;
-  variant: EnumColorVariant;
+  colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
-  bgImage?: string | null;
+  imageVariant: EnumImageVariant;
   generator: ({
     location,
-    variant,
+    colorVariant,
     dimensions,
     fontColor,
-    bgImage,
+    imageVariant,
+    customImageUrl,
   }: {
     location: string;
-    variant: EnumColorVariant;
+    colorVariant: EnumColorVariant;
     dimensions: ImageDimensions;
     fontColor: EnumColorHex;
-    bgImage?: string | null;
+    imageVariant: EnumImageVariant;
+    customImageUrl: string;
   }) => string;
 };
