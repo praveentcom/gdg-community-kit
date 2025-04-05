@@ -115,21 +115,12 @@ export function CommunityKitForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0">
         <CardContent className="grid p-0">
+					<picture>
+						<source media="(min-width: 768px)" srcSet="/images/illustrations/kit_banner.png" />
+						<img src="/images/illustrations/kit_banner_large.png" alt="Community Kit" className="w-full h-auto" />
+					</picture>
           <form className="p-6 md:p-8" onSubmit={onSubmit}>
             <div className="flex flex-col gap-8">
-              <div className="flex flex-row gap-3 items-center">
-                <Card className="w-12 h-8 items-center justify-center">
-                  <img src="/favicon.png" alt="GDG Logo" className="w-8 h-8" />
-                </Card>
-                <div className="flex flex-col text-center h-min">
-                  <h1 className="text-lg font-bold w-max">
-                    Howdy, organiser 👋🏼
-                  </h1>
-                  <p className="text-sm text-muted-foreground text-balance w-max">
-                    Let&apos;s generate your community kit
-                  </p>
-                </div>
-              </div>
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="grid gap-1.5 h-min">
                   <Label htmlFor="fullName">Full Name</Label>
