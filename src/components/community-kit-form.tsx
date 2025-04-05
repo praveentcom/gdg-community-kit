@@ -209,7 +209,7 @@ export function CommunityKitForm({
                       maxFiles: 1,
                       maxFileSize: 10 * 1024 * 1024,
                       clientAllowedFormats: ["png", "jpg", "jpeg"],
-                      sources: ["local", "url"],
+                      sources: ["local"],
                       showAdvancedOptions: false,
                       cropping: true,
                       multiple: false,
