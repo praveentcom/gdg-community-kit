@@ -71,7 +71,7 @@ export default async function handler(
       email,
       fullName,
       communityType,
-      customImageUrl,
+      customImageUrl: customImageUrl ?? ""
     },
   });
 

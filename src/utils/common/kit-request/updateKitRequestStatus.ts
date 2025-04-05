@@ -7,7 +7,7 @@ export default async function updateKitRequestStatus(
 ) {
   const updateResponse = await prisma.kitRequest.update({
     where: { id: requestId },
-    data: { status },
+    data: { status, updatedAt: new Date() },
   });
 
   if (!updateResponse) {
