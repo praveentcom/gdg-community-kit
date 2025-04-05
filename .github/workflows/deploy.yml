@@ -31,26 +31,28 @@ jobs:
 
               # Change to the deployment directory
               cd /var/www/gdg-community-kit || { echo "Deployment directory not found"; exit 1; }
+              
+              echo "Deleting existing files except node_modules and .env..."
+              find . -maxdepth 1 -mindepth 1 ! -name "node_modules" ! -name ".env" -exec rm -rf {} +
 
-              echo "Creating a temporary deployment directory..."
-              TEMP_DIR=$(mktemp -d)
+              # Add GitHub to known_hosts
+              echo "Adding GitHub to known_hosts..."
+              ssh-keyscan -H github.com >> ~/.ssh/known_hosts
 
-              echo "Cloning repository to the temporary directory..."
-              git clone git@github.com:praveentcom/gdg-community-kit.git "$TEMP_DIR"
+              echo "Cloning repository to a temporary folder..."
+              git clone git@github.com:praveentcom/gdg-community-kit.git /tmp/gdg-community-kit
 
-              echo "Installing dependencies in the temporary directory..."
-              cd "$TEMP_DIR"
+              echo "Copying new files from the repository..."
+              cp -r /tmp/gdg-community-kit/. .
+
+              echo "Cleaning up temporary repository..."
+              rm -rf /tmp/gdg-community-kit
+
+              echo "Installing dependencies..."
               npm install
 
-              echo "Building the application in the temporary directory..."
+              echo "Building the application..."
               npm run build
-
-              echo "Switching to the new build..."
-              cd /var/www/gdg-community-kit
-              rsync -a --delete --exclude=node_modules --exclude=.env "$TEMP_DIR"/ /var/www/gdg-community-kit/
-
-              echo "Cleaning up temporary directory..."
-              rm -rf "$TEMP_DIR"
 
               echo "Starting (or restarting) pm2 process..."
               if pm2 describe gdg-community-kit > /dev/null 2>&1; then
