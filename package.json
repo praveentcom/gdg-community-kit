@@ -39,7 +39,7 @@
     "puppeteer-core": "^24.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-email": "^4.0.4",
+    "react-email": "^4.0.6",
     "react-hook-form": "^7.55.0",
     "resend": "^4.2.0",
     "sonner": "^2.0.3",
