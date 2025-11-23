@@ -282,7 +282,7 @@ export function CommunityKitForm({
         team for guidance on how to use this community kit. Feel free to tweak
         it based on your event needs and plans.<br></br>
         <br></br>
-        Last updated on 1st April 2025.<br></br>
+        Last updated on 23rd November 2025.<br></br>
         <div className="text-center text-xs">
           Found the tool useful?{" "}
           <a

@@ -92,12 +92,14 @@ export default function getBrandWebsiteBanner640x500({
   dimensions,
   fontColor,
   imageVariant,
+  customImageUrl,
 }: {
   location: string;
   colorVariant: EnumColorVariant;
   dimensions: ImageDimensions;
   fontColor: EnumColorHex;
   imageVariant: EnumImageVariant;
+  customImageUrl: string;
 }) {
   const componentHtml = ReactDOMServer.renderToStaticMarkup(
     <Element
