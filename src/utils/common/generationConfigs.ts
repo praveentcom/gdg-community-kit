@@ -1,6 +1,6 @@
 import getBrandBevyBanner from "@/components/brand/bevy-banner";
 import getBrandBlogCover1024x512 from "@/components/brand/blog-cover/1024x512";
-import getBrandBlogCover2500x744 from "@/components/brand/blog-cover/2500×744";
+import getBrandBlogCover2500x744 from "@/components/brand/blog-cover/2500x744";
 import getBrandEmailHeader from "@/components/brand/email-header";
 import getBrandLandingBanner1440x499 from "@/components/brand/landing-banners/1440x499";
 import getBrandLandingBanner2500x471 from "@/components/brand/landing-banners/2500x471";
