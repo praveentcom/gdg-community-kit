@@ -38,7 +38,7 @@ export const EMAIL_KIT_GENERATED_HTML = ({
     <Head />
     <Body style={EMAIL_MAIN}>
       <Preview>
-        Wohoo, the kit for {communityName} is generated successfully. Download the kit{" "}
+        Woohoo, the kit for {communityName} is generated successfully. Download the kit{" "}
         using the attached link. The link will remain valid for 30 days.
       </Preview>
       <Container style={EMAIL_CONTAINER}>
