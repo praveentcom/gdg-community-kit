@@ -105,7 +105,7 @@ export function CommunityKitForm({
             },
           );
         } else if (res.status === 429) {
-          toast.warning("Rate limit exceeded. Try again in after an hour.");
+          toast.warning("Rate limit exceeded. Try again after an hour.");
         } else {
           toast.warning("Failed to generate image, please try later.");
         }
