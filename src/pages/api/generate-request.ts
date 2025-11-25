@@ -7,7 +7,10 @@ import { validateTurnstileToken } from "next-turnstile";
 import { v4 } from "uuid";
 
 import Redis from "ioredis";
-const redis = new Redis(process.env.REDIS_URL ?? "");
+if (!process.env.REDIS_URL) {
+  throw new Error("REDIS_URL environment variable is not set");
+}
+const redis = new Redis(process.env.REDIS_URL);
 
 export default async function handler(
   req: NextApiRequest,

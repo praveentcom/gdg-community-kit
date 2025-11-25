@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import chromium from "@sparticuz/chromium";
-chromium.setGraphicsMode = false;
 
 import pLimit from "p-limit";
 import JSZip from "jszip";
