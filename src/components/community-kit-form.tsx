@@ -96,22 +96,20 @@ export function CommunityKitForm({
           customImageUrl,
         },
       )
-      .then((res) => {
-        if (res.status === 200) {
-          toast.success(
-            `${`${fullName}`.split(" ")[0]}, we're generating your kit. You'll receive an email once it's generated.`,
-            {
-              duration: 20000,
-            },
-          );
-        } else if (res.status === 429) {
+      .then(() => {
+        toast.success(
+          `${`${fullName}`.split(" ")[0]}, we're generating your kit. You'll receive an email once it's generated.`,
+          {
+            duration: 20000,
+          },
+        );
+      })
+      .catch((error) => {
+        if (error.response?.status === 429) {
           toast.warning("Rate limit exceeded. Try again after an hour.");
         } else {
           toast.warning("Failed to generate image, please try later.");
         }
-      })
-      .catch((error) => {
-        toast.warning("Failed to generate image - " + error.message);
       })
       .finally(() => {
         setIsLoading(false);

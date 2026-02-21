@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import chromium from "@sparticuz/chromium";
-
 import pLimit from "p-limit";
 import JSZip from "jszip";
 
@@ -227,6 +225,6 @@ export default async function handler(
 
     console.error("Error generating images:", error);
 
-    res.status(500).json({ error: "Internal Server Error", details: error });
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }

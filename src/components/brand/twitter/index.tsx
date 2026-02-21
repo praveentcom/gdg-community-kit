@@ -5,6 +5,7 @@ import {
   getImageVariantSuffix,
 } from "@/types/Image";
 import ReactDOMServer from "react-dom/server";
+import generateGoogleSansFontStyles from "@/utils/common/generateGoogleSansFontStyles";
 
 const CONFIG = {
   positions: {
@@ -142,6 +143,7 @@ export default function getBrandTwitterBanner({
         <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        ${generateGoogleSansFontStyles()}
         <style>
             html, body {
                 margin: 0;
